@@ -1,4 +1,4 @@
-package com.apachee.netty.pratice;
+package com.apachee.netty.sixthexample;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

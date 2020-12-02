@@ -1,4 +1,4 @@
-package com.apachee.netty.protobuf;
+package com.apachee.netty.sixthexample;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
