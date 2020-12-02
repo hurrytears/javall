@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ded9666d-437f-44c9-9a0c-1d6e0c3239d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/DataInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/DataInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netty/src/protobuf/Student.proto" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/netty/target/" />
@@ -22,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="374">
+              <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+            <state relative-caret-position="398">
+              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -43,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="48" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="48" />
+            <state relative-caret-position="374">
+              <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,13 +56,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java">
+        <entry file="jar://$USER_HOME$/.m2/repository/io/netty/netty-all/4.1.10.Final/netty-all-4.1.10.Final-sources.jar!/io/netty/handler/codec/protobuf/ProtobufDecoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="6">
+              <caret line="87" column="34" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3252#3253#0" expanded="true" />
+                <element signature="e#3289#3290#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.m2/repository/com/google/protobuf/protobuf-java/3.11.0/protobuf-java-3.11.0-sources.jar!/com/google/protobuf/MessageLite.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="67" column="7" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -67,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+            <state relative-caret-position="-47">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+            <state relative-caret-position="374">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,10 +102,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java">
+        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="224">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,28 +114,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/DataInfo.java">
+        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/ProtobufTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/secondexample/MyClientHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="124">
+              <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,13 +159,13 @@
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/pratice/MyClientInitializer.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/pratice/MyClient.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/pratice/MyClientHandler.java" />
-        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java" />
-        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java" />
-        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServer.java" />
-        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java" />
         <option value="$PROJECT_DIR$/netty/src/protobuf/Student.proto" />
         <option value="$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto" />
+        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java" />
+        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java" />
+        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java" />
+        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java" />
       </list>
     </option>
   </component>
@@ -330,12 +328,12 @@
       <workItem from="1606872832812" duration="1305000" />
       <workItem from="1606874187165" duration="525000" />
       <workItem from="1606874749610" duration="2071000" />
-      <workItem from="1606876855167" duration="8806000" />
+      <workItem from="1606876855167" duration="14769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13126000" />
+    <option name="totallyTimeSpent" value="19089000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,7 +348,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.22184986" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.22184986" />
       <window_info id="Structure" order="1" sideWeight="0.5007072" side_tool="true" weight="0.19839142" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -366,7 +364,7 @@
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32956153" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
@@ -523,30 +521,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java">
+    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/DataInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="48" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="48" />
+        <state relative-caret-position="125">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/com/google/protobuf/protobuf-java/3.11.0/protobuf-java-3.11.0.jar!/com/google/protobuf/MessageLite.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/io/netty/netty-all/4.1.10.Final/netty-all-4.1.10.Final-sources.jar!/io/netty/handler/codec/protobuf/ProtobufDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6">
+          <caret line="87" column="34" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3252#3253#0" expanded="true" />
+            <element signature="e#3289#3290#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/com/google/protobuf/protobuf-java/3.11.0/protobuf-java-3.11.0-sources.jar!/com/google/protobuf/MessageLite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="67" column="7" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="374">
+          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -555,8 +582,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="-47">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -565,8 +592,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="374">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -575,25 +602,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="224">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto">
+    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/DataInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        <state relative-caret-position="124">
+          <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
