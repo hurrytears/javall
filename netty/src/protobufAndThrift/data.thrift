@@ -1,4 +1,5 @@
-namespace java com.apachee.netty.seventhexample
+namespace java seventhexample
+namespace py python
 
 typedef i16 short
 typedef i32 int

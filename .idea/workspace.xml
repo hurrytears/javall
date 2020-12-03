@@ -2,24 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ded9666d-437f-44c9-9a0c-1d6e0c3239d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_thrift_libthrift_0_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/DataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/PersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/PersonServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/py_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netty/netty.iml" beforeDir="false" afterPath="$PROJECT_DIR$/netty/netty.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netty/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/netty/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/netty/src/protobuf/DataInfo.proto" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/protobufAndThrift/DataInfo.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/gen-java/com/apachee/netty/seventhexample/DataException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/gen-java/com/apachee/netty/seventhexample/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/gen-java/com/apachee/netty/seventhexample/PersonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/netty/target/" />
@@ -37,8 +26,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="200">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/py_client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -65,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="25">
-              <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="12" column="73" lean-forward="true" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+              <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,11 +124,13 @@
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyServerHandler.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/sixthexample/MyClientHandler.java" />
         <option value="$PROJECT_DIR$/netty/pom.xml" />
-        <option value="$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/DataException.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftServer.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftClient.java" />
         <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/PersonServiceImpl.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift" />
+        <option value="$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/py_client.py" />
       </list>
     </option>
   </component>
@@ -322,12 +322,12 @@
       <workItem from="1606872832812" duration="1305000" />
       <workItem from="1606874187165" duration="525000" />
       <workItem from="1606874749610" duration="2071000" />
-      <workItem from="1606876855167" duration="22239000" />
+      <workItem from="1606876855167" duration="25092000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26559000" />
+    <option name="totallyTimeSpent" value="29412000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,7 +342,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.22184986" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.22184986" />
       <window_info id="Structure" order="1" sideWeight="0.5007072" side_tool="true" weight="0.19839142" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -352,7 +352,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32956153" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -360,7 +360,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="GenProtobuf" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -635,17 +635,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -662,10 +655,55 @@
     <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/ThriftClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="12" column="73" lean-forward="true" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+          <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="43" selection-start-column="43" selection-end-column="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/gen-py/com/apache/netty/seventhexample/python/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/gen-py/com/apache/netty/seventhexample/python/constants.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/gen-py/com/apache/netty/seventhexample/python/PersonService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-257" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/gen-py/com/apache/netty/seventhexample/python/PersonService-remote">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/gen-py/com/apache/netty/seventhexample/python/ttypes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/protobufAndThrift/data.thrift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty/src/main/java/com/apachee/netty/seventhexample/py_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
