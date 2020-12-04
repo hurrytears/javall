@@ -1,4 +1,4 @@
-package imterfaceample;
+package com.apachee.object;
 
 /*
 java7 可以包含：常量，抽象方法
