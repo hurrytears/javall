@@ -2,4 +2,4 @@
 localdata
 out
 *.iml
-spark/target
+*/target
