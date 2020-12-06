@@ -1,5 +1,5 @@
 .idea
 localdata
-.out
+out
 *.iml
 spark/target
