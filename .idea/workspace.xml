@@ -148,7 +148,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="315" />
     <option name="y" value="65" />
     <option name="width" value="1400" />
@@ -309,12 +309,12 @@
       <workItem from="1607194022736" duration="47000" />
       <workItem from="1607194106834" duration="16000" />
       <workItem from="1607194146742" duration="6000000" />
-      <workItem from="1607225016487" duration="264000" />
+      <workItem from="1607225016487" duration="595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50750000" />
+    <option name="totallyTimeSpent" value="51081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
