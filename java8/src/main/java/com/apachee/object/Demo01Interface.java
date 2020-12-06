@@ -9,21 +9,21 @@ public interface Demo01Interface {
 
     String name = "张三";
 
-    default String getName(){
-        return Demo01Interface.name;
-    }
-
-    static void getName4(){
-
-    }
+//    default String getName(){
+//        return Demo01Interface.name;
+//    }
+//
+//    static void getName4(){
+//
+//    }
 
 //    void getName2(){
 //
 //    }
-
-    static void getName3(){
-
-    }
+//
+//    static void getName3(){
+//
+//    }
 
 }
 
