@@ -1,6 +1,7 @@
 createtaskScheduler()
 taskSchedulerImpl:其实就是我们所说的TaskScheduler，后边会深度剖析，这里只要知道是怎么创建的即可
-SparkDeploySchedulerBackend:它在底层会接收taskSchedulerImpl的控制，实际上负责与Master注册，excutor的反注册，task发送到excutor等操作
+SparkDeploySchedulerBackend:它在底层会接受taskSchedulerImpl的控制，
+    实际上负责与Master注册，excutor的反注册，task发送到excutor等操作
 创建完成后做个操作：调用TaskSchedulerImpl的init()方法，会创建一个schedulePool，它有不同的优先策略，比如FIFO先入先出
 主要基于这个进行底层通信
 
@@ -8,6 +9,8 @@ TaskSchedulerImpl的start方法 -> SparkDeploySchedulerBackend的start方法 -> 
 ->registerWithMaster/tryRegisterAllMasters -> RegisterApplication，case class 里面封装了Application的信息
 ->spark集群，Master，worker，excutor
 -> 反向注册到SparkDeploySchedulerBackend
+
+
 
 
 DAGScheduler ,有个特别重要的东西，DAGSchedulerEventProcessActor， DAGScheduler底层基于该组件通信
