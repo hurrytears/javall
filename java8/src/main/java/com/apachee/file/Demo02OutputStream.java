@@ -19,17 +19,47 @@ FileOutputStream(File file)
 
  */
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Demo02OutputStream {
 
     public static void main(String[] args) throws IOException {
-        FileOutputStream os = new FileOutputStream("localdata/java/FileOutputStream.txt");
-//        os.write(new byte[3], 1, 3);
+//        out();
+        in();
+    }
 
-        os.write(97);
-        //十进制的整数转换为二进制的证书
+    static void out() throws IOException{
+        FileOutputStream os = new FileOutputStream("localdata/java/FileOutputStream.txt");
+//        os.write(new byte[3], 1, 3); 从第二个开始写三个
+
+//        os.write(97);
+//        os.write(new byte[]{49, 48, 48});
+
+//        byte[] bytes1 = "你好".getBytes();
+//        System.out.println(Arrays.toString(bytes1));
+
+//        byte[] bytes = {-65,66,-67,68,69};
+        byte[] bytes = {65,66,67,68,69};
+        os.write(bytes);
+        //十进制的整数转换为二进制的整数
         os.close();
     }
+
+    static void in() throws IOException {
+        FileInputStream fis = new FileInputStream("localdata/java/FileOutputStream.txt");
+
+        byte[] bytes = new byte[2];
+        int len = 0;
+
+        while ((len = fis.read(bytes)) != -1){
+            System.out.println(new String(bytes, 0, len));
+        }
+
+        fis.close();
+    }
+
 }
