@@ -1,9 +1,9 @@
-package com.apachee.Junit;
+package com.apachee.Improve;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Demo {
+public class Demo01Junit {
 
     @Test
     public void add(){
