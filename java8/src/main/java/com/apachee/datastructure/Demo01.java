@@ -63,4 +63,38 @@ public class Demo01 {
         if(p == null) r.next = q;
         else r.next = p;
     }
+
+    /**
+     * 头插法建立单链表
+     * @param arr 传递链表中要存储的值
+     * @param n 数组的长度
+     * @return 单链表
+     */
+    LNode tailInsert(int[] arr, int n){
+        LNode A = new LNode();
+        if(n<=0) return A;
+        for(int i=0; i<n; ++i){
+            LNode r = new LNode();
+            r.data = arr[i];
+            r.next = A.next;
+            A.next = r;
+        }
+        return null;
+    }
+
+    /**
+     * 尾插法建立单链表
+     */
+    LNode headInsert(int[] arr, int n){
+        LNode A = new LNode();
+        if(n<=0) return A;
+        A.next = new LNode();
+        LNode r = A.next;
+        for(int i=0; i<n; ++i){
+            r.data = arr[i];
+            r.next = new LNode();
+            r = r.next;
+        }
+        return A;
+    }
 }
