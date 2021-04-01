@@ -184,7 +184,7 @@ public class Lesson01LinearTable {
     void mergeBySqList(SqList a, SqList b){
         for(int i=0; i<a.length-1; ++i){
             for(int j=0; j<b.length-1; ++j){
-                
+
             }
         }
     }
