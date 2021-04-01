@@ -3,7 +3,7 @@ package com.apachee.datastructure;
 /*
 顺序表操作
  */
-public class Demo01LinearTable {
+public class Lesson01LinearTable {
 
     /**
      * 已知一个顺序表L，其中的元素递增有序排列，设计一个算法，插入一个元素x(x 为int 型）
@@ -48,7 +48,7 @@ public class Demo01LinearTable {
      * 设计一个算法，将A和B并成一个递增有序的链表C
      * C由A和B中的节点组成
      */
-    void conpact(LNode A, LNode B){
+    void merge(LNode A, LNode B){
         LNode p = A.next;
         LNode q = B.next;
         LNode C = new LNode();
@@ -133,5 +133,59 @@ public class Demo01LinearTable {
             }
         }
         return A;
+    }
+
+    /**
+     * 双链表中的指定节点之后添加节点
+     */
+    DLNode insertX(DLNode s, DLNode x){
+        x.next = s.next;
+        s.next.prior = x;
+        s.next = x;
+        x.prior = s;
+        return s;
+    }
+
+    /**
+     * 双链表中的指定节点之后添加节点
+     */
+    DLNode deleteX(DLNode s, DLNode x){
+        x = s.next;
+        s.next = x.next;
+        x.next.prior = s;
+        return s;
+    }
+
+    /**
+     * 逆置数组的前n个值
+     */
+    void reverse(SqList arr, int n){
+        int t;
+        for(int i=0,j=n-1; i<j; --i, --j){
+            t = arr.data[i];
+            arr.data[i] = arr.data[j];
+            arr.data[j] = t;
+        }
+    }
+
+    /**
+     * 将一个长度为n的数组的前端k(k<n)个元素逆序后移动到数组后端，要求原数组中数据不丢失，其余元素的位置无关紧要
+     * 类似：将一个长度为n的数组的前端k(k<n)个元素保持原序移动到数组后端，要求原数组中数据不丢失，其余元素的位置无关紧要
+     */
+    void switchArray01(SqList arr, int k){
+        //先逆置整个数组，然后前n-k个
+        reverse(arr, arr.length);
+        reverse(arr, k);
+    }
+
+    /**
+     * 顺序表A、B为递增有序的顺序表，将之合并为一个递增有序的顺序表
+     */
+    void mergeBySqList(SqList a, SqList b){
+        for(int i=0; i<a.length-1; ++i){
+            for(int j=0; j<b.length-1; ++j){
+                
+            }
+        }
     }
 }
