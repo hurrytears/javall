@@ -177,15 +177,5 @@ public class Lesson01LinearTable {
         reverse(arr, arr.length);
         reverse(arr, k);
     }
-
-    /**
-     * 顺序表A、B为递增有序的顺序表，将之合并为一个递增有序的顺序表
-     */
-    void mergeBySqList(SqList a, SqList b){
-        for(int i=0; i<a.length-1; ++i){
-            for(int j=0; j<b.length-1; ++j){
-
-            }
-        }
-    }
+    
 }
