@@ -27,6 +27,7 @@ class Baozipu extends Thread {
         int count = 0;
         while (true) {
             synchronized (bz) {
+                bz.notify();  //这一行的位置无关紧要
                 //包子铺等待吃货下单
                 if(bz.flag == true) {
                     try {
@@ -35,7 +36,6 @@ class Baozipu extends Thread {
                         e.printStackTrace();
                     }
                 }
-
                 //被唤醒后开始做包子
                 if (count % 2 == 0) {
                     bz.pi = "薄皮";
@@ -52,7 +52,7 @@ class Baozipu extends Thread {
                     e.printStackTrace();
                 }
                 bz.flag = true;
-                bz.notify();
+
                 System.out.println("包子铺已经做好了" + bz.pi + bz.xian + "包子，吃货可以开始吃了");
             }
         }

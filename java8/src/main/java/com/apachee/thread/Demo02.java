@@ -34,7 +34,7 @@ class RunnableImpl01 implements Runnable {
 //                    ticket--;
 //                }
 //            }
-            //调用同步方法，锁对象就是this
+            //调用同步方法，锁对象就是this，此处的this指的是文件对象
             sell();
 
             //锁机制

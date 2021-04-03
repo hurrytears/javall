@@ -4,7 +4,7 @@ package com.apachee.functionRef;
 
 
 class MethodRedObject{
-    public void printUpperCaseString(String str){
+    void printUpperCaseString(String str){
         System.out.println(str.toUpperCase());
     }
 }
