@@ -15,7 +15,7 @@ public class Demo01Stream {
         list.stream()
                 .filter(name -> name.startsWith("张"))
                 .filter(name -> name.length() == 3)
-                .forEach(name -> System.out.println(name));
+                .forEach(System.out::println);
     }
 
     /*

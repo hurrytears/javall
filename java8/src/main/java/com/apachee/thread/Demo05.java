@@ -14,12 +14,13 @@ void shutdown()
  */
 public class Demo05 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService pool = Executors.newFixedThreadPool(10);
         Future<?> submit = pool.submit(() -> {
             System.out.println(Thread.currentThread().getName());
         });
-
+        Thread.sleep(5);
+        System.out.println(submit.isDone());
         pool.shutdown();
     }
 }

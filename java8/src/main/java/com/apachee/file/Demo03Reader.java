@@ -23,7 +23,7 @@ public class Demo03Reader {
     }
 
     private static void writer() throws IOException {
-        FileWriter fw = new FileWriter("localdata/java/FileOutputStream.txt");
+        FileWriter fw = new FileWriter("localdata/java/FileWriter.txt");
         fw.write(97);
         fw.flush(); // 刷新缓冲区，流对象继续使用
         fw.write(98);

@@ -1,5 +1,8 @@
 package com.apachee.functionRef;
 
+//方法引用
+
+
 class MethodRedObject{
     public void printUpperCaseString(String str){
         System.out.println(str.toUpperCase());

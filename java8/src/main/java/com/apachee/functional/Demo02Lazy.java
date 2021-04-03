@@ -40,7 +40,7 @@ public class Demo02Lazy {
         showLog(1, msg1 + msg2 + msg3);
 
         //使用lambda表达式作为参数，只有满足条件，才会调用接口中的msg拼接方法
-        showLog2(2, ()->{
+        showLog2(1, ()->{
             System.out.println("不满足条件不执行");
             //返回一个拼接好的字符串
             return msg1 + msg2 + msg3;
