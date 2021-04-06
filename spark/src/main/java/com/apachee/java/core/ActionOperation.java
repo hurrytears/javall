@@ -17,18 +17,18 @@ import java.util.Map;
 public class ActionOperation {
 
     public static void main(String[] args) {
-//        reduce();
+        reduce();
 //        collect();
 //        count();
 //        take();
 //        saveAsTextFile();
 //        countByKey();
 //        map();
-        join();
+//        join();
     }
 
     private static void join(){
-        SparkConf conf = new SparkConf().setMaster("local").setAppName("join");
+        SparkConf conf = new SparkConf().setMaster("local").setAppName("join").set("spark.testing.memory","471859233");
         JavaSparkContext sc = new JavaSparkContext(conf);
         List<Tuple2<Integer, String>> list = Arrays.asList(
                 new Tuple2<>(1, "zhang"),
@@ -59,8 +59,7 @@ public class ActionOperation {
         List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
         JavaRDD<Integer> numsRdd = sc.parallelize(nums);
         JavaRDD<Integer> map = numsRdd.map(x -> x * 2);
-        map.foreach(num -> System.out.println(num)
-        );
+        map.foreach(System.out::println);
     }
 
     private static void reduce(){

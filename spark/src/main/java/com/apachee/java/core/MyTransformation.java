@@ -60,7 +60,7 @@ public class MyTransformation {
                 new Tuple2<>("class2", 31)
         );
         JavaPairRDD<String, Integer> res = sc.parallelizePairs(scores).reduceByKey((v1, v2) -> v1 + v2);
-        res.foreach(v -> System.out.println(v));
+        res.foreach(System.out::println);
     }
 
     private static void groupByKey(JavaSparkContext sc ){
@@ -81,7 +81,7 @@ public class MyTransformation {
         List<String> list = Arrays.asList("hello you");
         JavaRDD<String> lines = sc.parallelize(list);
         JavaRDD<String> res = lines.flatMap(l -> Arrays.asList(l.split(" ")).iterator());
-        res.foreach(s -> System.out.println(s));
+        res.foreach(System.out::println);
 
     }
 
@@ -89,7 +89,7 @@ public class MyTransformation {
         List<Integer> list = Arrays.asList(1,2,4,4,5);
         JavaRDD<Integer> init = sc.parallelize(list);
         JavaRDD<Integer> mapped = init.map(value -> value * 2);
-        mapped.foreach(v -> System.out.println(v));
+        mapped.foreach(System.out::println);
     }
 
     private static void wordcount(JavaSparkContext sc){
