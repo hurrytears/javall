@@ -48,10 +48,10 @@ public class Lesson01LinearTable {
      * 设计一个算法，将A和B并成一个递增有序的链表C
      * C由A和B中的节点组成
      */
-    void merge(LNode A, LNode B){
-        LNode p = A.next;
-        LNode q = B.next;
-        LNode C = new LNode();
+    void merge(LNode<Integer> A, LNode<Integer> B){
+        LNode<Integer> p = A.next;
+        LNode<Integer> q = B.next;
+        LNode<Integer> C = new LNode<>();
         LNode r = C;
         while(p!=null && q!=null){
             if(p.data < q.data){
@@ -105,13 +105,13 @@ public class Lesson01LinearTable {
      * 若存在，删除并返回1
      * 若不存在，返回0
      */
-    int deleteX(LNode C, int x){
-        LNode r = C;
+    int deleteX(LNode<Integer> C, int x){
+        LNode<Integer> r = C;
         while (r.next != null && r.next.data != x){
             r = r.next;
         }
         if(r.next == null) return 0;
-        LNode p = r.next;
+        LNode<Integer> p = r.next;
         r.next = p.next;
         //释放 p
         return  1;

@@ -5,8 +5,8 @@ package com.apachee.datastructure;
  * top = -1 为栈空
  * top = maxSize-1 为栈满
  */
-public class SqStack {
-    int[] data = new int[100];
+public class SqStack<T> {
+    T[] data = (T[]) new Object[100];
     int top;
 
     void initStack(){
@@ -17,14 +17,14 @@ public class SqStack {
         return top == -1;
     }
 
-    boolean push(int x){
+    boolean push(T x){
         if(top == 99)
             return false;
         data[++top] = x;
         return true;
     }
 
-    int pop(){
+    T pop(){
         if(top == -1){
             try {
                 throw new Exception("栈空");
