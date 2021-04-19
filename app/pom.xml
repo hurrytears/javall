@@ -17,6 +17,16 @@
                     <target>6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.apachee.jspark.MysqlDriver</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -42,5 +52,5 @@
         </dependency>
 
     </dependencies>
-    
+
 </project>
