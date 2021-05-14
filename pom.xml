@@ -9,6 +9,7 @@
     <modules>
         <module>java8</module>
         <module>netty</module>
+        <module>app</module>
     </modules>
 
     <properties>
