@@ -10,6 +10,7 @@
         <module>java8</module>
         <module>netty</module>
         <module>app</module>
+        <module>spark</module>
     </modules>
 
     <properties>
