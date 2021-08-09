@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-@WebServlet(name = "/demo7")
-public class demo7 extends HttpServlet {
+@WebServlet("/demo7")
+public class Demo7 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 页面省略，获取post的请求体
         BufferedReader br = request.getReader();
