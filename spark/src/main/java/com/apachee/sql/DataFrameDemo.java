@@ -13,7 +13,7 @@ import java.util.List;
 public class DataFrameDemo {
 
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setMaster("local").setAppName("DataFrameDemo");
+        SparkConf conf = new SparkConf().setMaster("local").setAppName("DataFrameDemo1");
         JavaSparkContext sc = new JavaSparkContext(conf);
         sc.setLogLevel("ERROR");
         SQLContext sqlContext = new SQLContext(sc);
