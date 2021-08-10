@@ -15,10 +15,21 @@ public class DataFrameDemo {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setMaster("local").setAppName("DataFrameDemo");
         JavaSparkContext sc = new JavaSparkContext(conf);
+        sc.setLogLevel("ERROR");
         SQLContext sqlContext = new SQLContext(sc);
         List<String> list = Arrays.asList("zhangsan 男 18", "lisi 女 19");
-        JavaRDD<String> rdd = sc.parallelize(list);
+        JavaRDD<People> rdd = sc.parallelize(list).map(line -> {
+            String[] arr = line.split(" ");
+            return new People(arr[0], arr[1], Integer.parseInt(arr[2]));
+        });
         Dataset<Row> dataFrame = sqlContext.createDataFrame(rdd, People.class);
         dataFrame.show();
+        dataFrame.printSchema();
+        dataFrame.select("name").show();
+        dataFrame.select(dataFrame.col("name"), dataFrame.col("age").plus(1)).show();
+        dataFrame.filter(dataFrame.col("age").gt(18)).show();
+        dataFrame.groupBy(dataFrame.col("age")).count().show();
+
+
     }
 }
