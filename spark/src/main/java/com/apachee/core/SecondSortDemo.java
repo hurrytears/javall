@@ -25,7 +25,7 @@ public class SecondSortDemo {
             return new Tuple2<>(secondKey, l);
         }).sortByKey().foreach(v -> System.out.println(v));
         sc.broadcast("abc");
-        
+
     }
 }
 
