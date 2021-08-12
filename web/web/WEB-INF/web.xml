@@ -7,7 +7,6 @@
     <servlet>
         <servlet-name>demo1</servlet-name>
         <servlet-class>com.apachee.web.servlet.Demo1</servlet-class>
-
         <!-- 指定servlet的创建时机，默认或者值为负数，第一次被访问时创建，
             非负数时为服务启动时创建-->
         <load-on-startup>0</load-on-startup>
@@ -16,4 +15,14 @@
         <servlet-name>demo1</servlet-name>
         <url-pattern>/demo1</url-pattern>
     </servlet-mapping>
+
+
+    <listener>
+        <listener-class>com.apachee.web.listener.ListenerDemo</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/servletContext.xml</param-value>
+    </context-param>
 </web-app>
