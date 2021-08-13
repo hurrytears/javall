@@ -3,12 +3,13 @@ package com.apachee.sql;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.*;
+import org.apache.spark.sql.expressions.UserDefinedAggregator;
+import org.apache.spark.sql.expressions.UserDefinedFunction;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
+import scala.collection.Seq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +50,52 @@ public class DataFrameDemo {
         StructType schema = DataTypes.createStructType(fields);
         Dataset<Row> df = sqlContext.createDataFrame(rowJavaRDD, schema);
         df.show();
-        System.out.println("我就不信了");
+
+        df.write().mode(SaveMode.Overwrite).json("data/json");
+        df.write().mode(SaveMode.Overwrite).parquet("data/parquet");
+
+        System.out.println("---------------------read -----------------------");
+        sqlContext.read().json("data/json").show();
+//        sqlContext.read().load();
+
+        // 注册udf函数
+        UserDefinedFunction udf = new UserDefinedFunction() {
+            @Override
+            public boolean nullable() {
+                return false;
+            }
+
+            @Override
+            public Column apply(Seq<Column> exprs) {
+                return null;
+            }
+
+            @Override
+            public Column apply(Column... exprs) {
+                return null;
+            }
+
+            @Override
+            public UserDefinedFunction asNondeterministic() {
+                return null;
+            }
+
+            @Override
+            public boolean deterministic() {
+                return false;
+            }
+
+            @Override
+            public UserDefinedFunction withName(String name) {
+                return null;
+            }
+
+            @Override
+            public UserDefinedFunction asNonNullable() {
+                return null;
+            }
+        };
+        sqlContext.udf().register("functionname", udf);
+//        UserDefinedAggregator udaf = new UserDefinedAggregator();
     }
 }
