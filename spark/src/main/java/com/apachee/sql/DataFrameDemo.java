@@ -59,43 +59,6 @@ public class DataFrameDemo {
 //        sqlContext.read().load();
 
         // 注册udf函数
-        UserDefinedFunction udf = new UserDefinedFunction() {
-            @Override
-            public boolean nullable() {
-                return false;
-            }
-
-            @Override
-            public Column apply(Seq<Column> exprs) {
-                return null;
-            }
-
-            @Override
-            public Column apply(Column... exprs) {
-                return null;
-            }
-
-            @Override
-            public UserDefinedFunction asNondeterministic() {
-                return null;
-            }
-
-            @Override
-            public boolean deterministic() {
-                return false;
-            }
-
-            @Override
-            public UserDefinedFunction withName(String name) {
-                return null;
-            }
-
-            @Override
-            public UserDefinedFunction asNonNullable() {
-                return null;
-            }
-        };
-        sqlContext.udf().register("functionname", udf);
 //        UserDefinedAggregator udaf = new UserDefinedAggregator();
     }
 }
