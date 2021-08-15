@@ -5,14 +5,6 @@ import org.apache.spark.sql.api.java.UDF1;
 import org.apache.spark.sql.expressions.Aggregator;
 import org.apache.spark.sql.types.DataTypes;
 
-import org.apache.spark.sql.functions.*;
-
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 public class UdfAndUdafDemo {
 
     public static void main(String[] args) throws AnalysisException {
@@ -26,43 +18,56 @@ public class UdfAndUdafDemo {
         Dataset<Row> json = spark.read().json("data/json");
         spark.sql("select udf(1)").show();
 
-        Dataset<Long> id = spark.range(1, 10);
-
 
         // udaf
-        Aggregator<Long, Tuple<Long, Integer>, Double> aggregator = new Aggregator<Long, Tuple<Long, Integer>, Double>() {
+        Aggregator<Long, Tuple, Double> aggregator = new Aggregator<Long, Tuple, Double>() {
             @Override
-            public Tuple<Long, Integer> zero() {
-                return new Tuple<>(1L, 0);
+            public Tuple zero() {
+                return new Tuple(1L, 0);
             }
 
             @Override
-            public Tuple<Long, Integer> reduce(Tuple<Long, Integer> b, Long a) {
-                return new Tuple<>(a * b.getKey(), b.getValue()+1);
+            public Tuple reduce(Tuple b, Long a) {
+                long newKey = a + b.getKey();
+                int newValue = b.getValue() + 1;
+                b.setKey(newKey);
+                b.setValue(newValue);
+                return b;
             }
 
             @Override
-            public Tuple<Long, Integer> merge(Tuple<Long, Integer> b1, Tuple<Long, Integer> b2) {
-                return new Tuple<>(b1.getKey()*b2.getKey(), b1.getValue()+b2.getValue());
+            public Tuple merge(Tuple b1, Tuple b2) {
+                long newKey = b1.getKey()+b2.getKey();
+                int newValue = b1.getValue()+b2.getValue();
+                b1.setKey(newKey);
+                b1.setValue(newValue);
+                return b1;
             }
 
             @Override
-            public Double finish(Tuple<Long, Integer> reduction) {
-                return Math.pow(reduction.getKey().doubleValue(), 1/reduction.getValue().doubleValue());
+            public Double finish(Tuple reduction) {
+                reduction.getKey();
+                reduction.getValue();
+                return (double)reduction.getKey() / reduction.getValue();
             }
 
             @Override
-            public Encoder<Tuple<Long, Integer>> bufferEncoder() {
+            public Encoder bufferEncoder() {
                 System.out.println("在执行");
-                return null;
+                return Encoders.bean(Tuple.class);
             }
 
             @Override
             public Encoder<Double> outputEncoder() {
                 System.out.println("在执行");
-                return null;
+                return Encoders.DOUBLE();
             }
         };
-
+        Dataset<Long> id = spark.range(1, 5);
+        id.show();
+        id.registerTempTable("idtable");
+        TypedColumn<Long, Double> average_salary = aggregator.toColumn().name("average_salary");
+        Dataset<Double> res = id.select(average_salary);
+        res.show();
     }
 }
