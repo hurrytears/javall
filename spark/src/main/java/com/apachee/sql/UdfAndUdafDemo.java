@@ -53,11 +53,13 @@ public class UdfAndUdafDemo {
 
             @Override
             public Encoder<Tuple<Long, Integer>> bufferEncoder() {
+                System.out.println("在执行");
                 return null;
             }
 
             @Override
             public Encoder<Double> outputEncoder() {
+                System.out.println("在执行");
                 return null;
             }
         };
