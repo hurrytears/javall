@@ -86,6 +86,7 @@ public class Demo {
                         .sortByKey(false)
                         .mapToPair(v -> new Tuple2<String, Integer>(v._2, v._1)));
 //        top.print();
+
         // foreachRDD 使用方法
         top.foreachRDD(rdd -> {
             rdd.foreachPartition(partition -> {
@@ -99,6 +100,15 @@ public class Demo {
                 JdbcPool.returnConnection(conn);
             });
         });
+
+        // 思考 foreachRDD 其实还是一个整体吗
+        /**
+         * foreachRDD 作用于 DStream中每一个时间间隔的 RDD，
+         * foreachPartition 作用于每一个时间间隔的RDD中的每一个 partition，
+         * foreach 作用于每一个时间间隔的 RDD 中的每一个元素
+         * foreachRDD 是一个transform算子，而且在driver上执行
+         */
+
 
 
         jssc.start();
