@@ -1,6 +1,7 @@
 package com.apachee.streaming;
 
 import com.apachee.sql.Tuple;
+import com.apachee.utils.JdbcPool;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -16,6 +17,7 @@ import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
 import scala.Tuple2;
 
+import java.sql.Connection;
 import java.util.*;
 
 public class Demo {
@@ -64,18 +66,40 @@ public class Demo {
 //        });
 
         // 黑名单
-        List<Tuple2<String, Boolean>> blackListData = new ArrayList<>();
-        blackListData.add(new Tuple2<>("jack", false));
-        blackListData.add(new Tuple2<>("mary", false));
-        JavaPairRDD<String, Boolean> blackListRDD = jssc.sparkContext().parallelizePairs(blackListData);
-        JavaPairDStream<String, String> clickLogDStream = stream.mapToPair(line -> new Tuple2<>(line.split(" ")[1], line));
-        JavaDStream<Tuple2<String, String>> validLog = clickLogDStream.transform(clickRDD -> {
-            JavaRDD<Tuple2<String, String>> filtered = clickRDD.leftOuterJoin(blackListRDD)
-                    .filter(log -> log._2._2.orElse(true))
-                    .map(f -> new Tuple2<String, String>(f._1, f._2._1.split(" ")[0]));
-            return filtered;
+//        List<Tuple2<String, Boolean>> blackListData = new ArrayList<>();
+//        blackListData.add(new Tuple2<>("jack", false));
+//        blackListData.add(new Tuple2<>("mary", false));
+//        JavaPairRDD<String, Boolean> blackListRDD = jssc.sparkContext().parallelizePairs(blackListData);
+//        JavaPairDStream<String, String> clickLogDStream = stream.mapToPair(line -> new Tuple2<>(line.split(" ")[1], line));
+//        JavaDStream<Tuple2<String, String>> validLog = clickLogDStream.transform(clickRDD -> {
+//            JavaRDD<Tuple2<String, String>> filtered = clickRDD.leftOuterJoin(blackListRDD)
+//                    .filter(log -> log._2._2.orElse(true))
+//                    .map(f -> new Tuple2<String, String>(f._1, f._2._1.split(" ")[0]));
+//            return filtered;
+//        });
+//        validLog.print();
+
+        // 滑动窗口
+        JavaPairDStream<String, Integer> top = stream.mapToPair(l -> new Tuple2<>(l.split(" ")[1], 1))
+                .reduceByKeyAndWindow((v1, v2) -> v1 + v2, Durations.seconds(60), Durations.seconds(10))
+                .transformToPair(rdd -> rdd.mapToPair(v -> new Tuple2<Integer, String>(v._2, v._1))
+                        .sortByKey(false)
+                        .mapToPair(v -> new Tuple2<String, Integer>(v._2, v._1)));
+//        top.print();
+        // foreachRDD 使用方法
+        top.foreachRDD(rdd -> {
+            rdd.foreachPartition(partition -> {
+                Connection conn = JdbcPool.getConnection();
+                while (partition.hasNext()){
+                    Tuple2<String, Integer> next = partition.next();
+                    String sql = "insert into spark.wordcount (word,count) values" +
+                            "('"+next._1+"',"+next._2+")";
+                    conn.createStatement().execute(sql);
+                }
+                JdbcPool.returnConnection(conn);
+            });
         });
-        validLog.print();
+
 
         jssc.start();
         jssc.awaitTermination();
