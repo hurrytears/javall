@@ -19,12 +19,12 @@ public class MockData {
             System.out.println("接收到一个socket");
             OutputStream os = accept.getOutputStream();
             PrintWriter pw = new PrintWriter(os, true);
-            String[] words = {"hello", "world", "you", "me"};
+            String[] words = {"jack", "leo", "mary", "sam"};
             Random random = new Random();
             for(int i=0; i<1000*1000; i++){
                 Thread.sleep(1000);
                 System.out.println("写入"+i+"条数据");
-                pw.println(words[random.nextInt(words.length-1)]);
+                pw.println(System.currentTimeMillis()+ " " +words[random.nextInt(words.length)]);
             }
             os.close();
             pw.close();

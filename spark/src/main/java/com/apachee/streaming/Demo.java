@@ -1,9 +1,12 @@
 package com.apachee.streaming;
 
+import com.apachee.sql.Tuple;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.Optional;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.streaming.Durations;
@@ -31,8 +34,8 @@ public class Demo {
         JavaReceiverInputDStream<String> stream = jssc.socketTextStream("localhost", 9999);
         // hdfs 文件数据源
 //        JavaDStream<String> stream = jssc.textFileStream("/test/spark/data");
-        JavaDStream<String> words = stream.flatMap(l -> Arrays.asList(l.split(" ")).iterator());
-        JavaPairDStream<String, Integer> pair = words.mapToPair(word -> new Tuple2<>(word, 1));
+//        JavaDStream<String> words = stream.flatMap(l -> Arrays.asList(l.split(" ")).iterator());
+//        JavaPairDStream<String, Integer> pair = words.mapToPair(word -> new Tuple2<>(word, 1));
         // kafka数据源 官方最新版
 //        Collection<String> topics = Arrays.asList("topicA", "topicB");
 //        Map<String, Object> kafkaParams = new HashMap<>();
@@ -51,14 +54,28 @@ public class Demo {
 //        JavaPairDStream<String, String> kafkaPair = stream.mapToPair(record -> new Tuple2<>(record.key(), record.value()));
 //        JavaPairDStream<String, Integer> pair = kafkaPair.mapToPair(v -> new Tuple2<>(v._2, 1));
 //        JavaPairDStream<String, Integer> wordcount = pair.reduceByKey((v1, v2) -> v1 + v2);
-        JavaPairDStream<String, Integer> wordcount = pair.updateStateByKey((List<Integer> values, Optional<Integer> state) -> {
-            int newValue = state.isPresent() ? state.get() : 0;
-            for (Integer value : values) {
-                newValue += value;
-            }
-            return Optional.of(newValue);
+        // updateSteteByKey 测试
+//        JavaPairDStream<String, Integer> wordcount = pair.updateStateByKey((List<Integer> values, Optional<Integer> state) -> {
+//            int newValue = state.isPresent() ? state.get() : 0;
+//            for (Integer value : values) {
+//                newValue += value;
+//            }
+//            return Optional.of(newValue);
+//        });
+
+        // 黑名单
+        List<Tuple2<String, Boolean>> blackListData = new ArrayList<>();
+        blackListData.add(new Tuple2<>("jack", false));
+        blackListData.add(new Tuple2<>("mary", false));
+        JavaPairRDD<String, Boolean> blackListRDD = jssc.sparkContext().parallelizePairs(blackListData);
+        JavaPairDStream<String, String> clickLogDStream = stream.mapToPair(line -> new Tuple2<>(line.split(" ")[1], line));
+        JavaDStream<Tuple2<String, String>> validLog = clickLogDStream.transform(clickRDD -> {
+            JavaRDD<Tuple2<String, String>> filtered = clickRDD.leftOuterJoin(blackListRDD)
+                    .filter(log -> log._2._2.orElse(true))
+                    .map(f -> new Tuple2<String, String>(f._1, f._2._1.split(" ")[0]));
+            return filtered;
         });
-        wordcount.print();
+        validLog.print();
 
         jssc.start();
         jssc.awaitTermination();
