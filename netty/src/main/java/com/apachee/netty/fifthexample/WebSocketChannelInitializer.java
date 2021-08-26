@@ -14,8 +14,11 @@ public class WebSocketChannelInitializer extends ChannelInitializer<SocketChanne
         ChannelPipeline pipeline = ch.pipeline();
 
         pipeline.addLast(new HttpServerCodec());
+        // 块的方式的写的处理器
         pipeline.addLast(new ChunkedWriteHandler());
+        // 聚合为FullHttpRequest,FullHttpResponse
         pipeline.addLast(new HttpObjectAggregator(8192));
+        // 专门针对websocket
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         pipeline.addLast(new TextWebSocketFrameHandler());

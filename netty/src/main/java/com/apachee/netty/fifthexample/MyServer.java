@@ -10,6 +10,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 import java.net.InetSocketAddress;
 
+// Socket实例
 public class MyServer {
     public static void main(String[] args) {
         EventLoopGroup boss = new NioEventLoopGroup();

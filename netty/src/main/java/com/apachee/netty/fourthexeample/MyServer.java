@@ -8,6 +8,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+/**
+ * 心跳信息
+ */
 public class MyServer {
     public static void main(String[] args) {
         EventLoopGroup boss = new NioEventLoopGroup();
