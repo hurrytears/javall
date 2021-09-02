@@ -1,6 +1,8 @@
 package com.apachee.netty.eighthexample;
 import io.grpc.stub.StreamObserver;
 
+import java.util.UUID;
+
 public class StudentServiceImpl extends com.apachee.netty.eighthexample.StudentServiceGrpc.StudentServiceImplBase {
 
     @Override
@@ -43,6 +45,28 @@ public class StudentServiceImpl extends com.apachee.netty.eighthexample.StudentS
                 com.apachee.netty.eighthexample.StudentResponseList build = com.apachee.netty.eighthexample.StudentResponseList.newBuilder().addStudentResponse(studentResponse).addStudentResponse(studentResponse2).build();
 
                 responseObserver.onNext(build);
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+    @Override
+    public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
+        return new StreamObserver<StreamRequest>() {
+            @Override
+            public void onNext(StreamRequest streamRequest) {
+                System.out.println(streamRequest.getRequestIno());
+
+                responseObserver.onNext(StreamResponse.newBuilder().setResponseInfo(UUID.randomUUID().toString()).build());
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
                 responseObserver.onCompleted();
             }
         };

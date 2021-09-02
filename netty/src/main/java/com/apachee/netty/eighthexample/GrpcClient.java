@@ -1,11 +1,10 @@
 package com.apachee.netty.eighthexample;
 
-import com.apachee.netty.eighthexample.StudentServiceGrpc;
-import com.apachee.netty.sixthexample.DataInfo;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 
 public class GrpcClient {
@@ -57,11 +56,44 @@ public class GrpcClient {
         studentRequestStreamObserver.onNext(com.apachee.netty.eighthexample.StudentRequest.newBuilder().setAge(50).getDefaultInstanceForType());
 
         studentRequestStreamObserver.onCompleted();
+
+        System.out.println("---------------------------");
+
+        StreamObserver<StreamRequest> requestStreamObserver = stub.biTalk(new StreamObserver<StreamResponse>() {
+            @Override
+            public void onNext(StreamResponse streamResponse) {
+                System.out.println(streamResponse.getResponseInfo());
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
+            }
+
+            @Override
+            public void onCompleted() {
+                System.out.println("onCompleted");
+            }
+        });
+
+        for(int i=0; i<10; i++){
+            requestStreamObserver.onNext(StreamRequest.newBuilder().setRequestIno(LocalDateTime.now().toString()).build());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println("---------------------------");
+
+
     }
 }
 
