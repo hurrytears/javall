@@ -11,7 +11,7 @@ public class GrpcServer {
     private Server server;
 
     private void start() throws IOException {
-        this.server = ServerBuilder.forPort(8899).addService(new StudentServiceImpl()).build().start();
+        this.server = ServerBuilder.forPort(8888).addService(new StudentServiceImpl()).build().start();
         System.out.println("server started");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
