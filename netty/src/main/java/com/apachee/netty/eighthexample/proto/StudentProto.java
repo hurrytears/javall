@@ -67,7 +67,7 @@ public final class StudentProto {
       "onse\030\001 \003(\01320.com.apachee.netty.eighthexa" +
       "mple.StudentResponse\"$\n\rStreamRequest\022\023\n" +
       "\013request_ino\030\001 \001(\t\"\'\n\016StreamResponse\022\025\n\r" +
-      "response_info\030\001 \001(\t2\363\004\n\016StudentService\022r" +
+      "response_info\030\001 \001(\t2\370\003\n\016StudentService\022r" +
       "\n\025GetRealNameByUsername\022*.com.apachee.ne" +
       "tty.eighthexample.MyRequest\032+.com.apache" +
       "e.netty.eighthexample.MyResponse\"\000\022y\n\020Ge" +
@@ -80,11 +80,8 @@ public final class StudentProto {
       "ponseList\"\000(\001\022o\n\006BiTalk\022..com.apachee.ne" +
       "tty.eighthexample.StreamRequest\032/.com.ap" +
       "achee.netty.eighthexample.StreamResponse" +
-      "\"\000(\0010\001\022y\n\026TestOutPutConfigUpdate\022*.com.a" +
-      "pachee.netty.eighthexample.MyRequest\032/.c" +
-      "om.apachee.netty.eighthexample.StreamRes" +
-      "ponse\"\0000\001B7\n%com.apachee.netty.eighthexa" +
-      "mple.protoB\014StudentProtoP\001b\006proto3"
+      "\"\000(\0010\001B7\n%com.apachee.netty.eighthexampl" +
+      "e.protoB\014StudentProtoP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

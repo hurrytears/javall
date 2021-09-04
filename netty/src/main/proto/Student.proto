@@ -15,7 +15,7 @@ service StudentService {
 
     rpc BiTalk(stream StreamRequest) returns (stream StreamResponse) {}
 
-    rpc TestOutPutConfigUpdate(MyRequest) returns (stream StreamResponse) {}
+    //rpc TestOutPutConfigUpdate(MyRequest) returns (stream StreamResponse) {}
 }
 
 message MyRequest {

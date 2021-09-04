@@ -4,9 +4,12 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import com.apachee.netty.eighthexample.proto.*;
 
+/**
+ * stub
+ * Channel
+ * Transport
+ */
 public class GrpcServer {
 
     private Server server;

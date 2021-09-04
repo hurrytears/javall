@@ -139,37 +139,6 @@ public final class StudentServiceGrpc {
     return getBiTalkMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.apachee.netty.eighthexample.proto.MyRequest,
-      com.apachee.netty.eighthexample.proto.StreamResponse> getTestOutPutConfigUpdateMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "TestOutPutConfigUpdate",
-      requestType = com.apachee.netty.eighthexample.proto.MyRequest.class,
-      responseType = com.apachee.netty.eighthexample.proto.StreamResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<com.apachee.netty.eighthexample.proto.MyRequest,
-      com.apachee.netty.eighthexample.proto.StreamResponse> getTestOutPutConfigUpdateMethod() {
-    io.grpc.MethodDescriptor<com.apachee.netty.eighthexample.proto.MyRequest, com.apachee.netty.eighthexample.proto.StreamResponse> getTestOutPutConfigUpdateMethod;
-    if ((getTestOutPutConfigUpdateMethod = StudentServiceGrpc.getTestOutPutConfigUpdateMethod) == null) {
-      synchronized (StudentServiceGrpc.class) {
-        if ((getTestOutPutConfigUpdateMethod = StudentServiceGrpc.getTestOutPutConfigUpdateMethod) == null) {
-          StudentServiceGrpc.getTestOutPutConfigUpdateMethod = getTestOutPutConfigUpdateMethod =
-              io.grpc.MethodDescriptor.<com.apachee.netty.eighthexample.proto.MyRequest, com.apachee.netty.eighthexample.proto.StreamResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TestOutPutConfigUpdate"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.apachee.netty.eighthexample.proto.MyRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.apachee.netty.eighthexample.proto.StreamResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("TestOutPutConfigUpdate"))
-              .build();
-        }
-      }
-    }
-    return getTestOutPutConfigUpdateMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -246,13 +215,6 @@ public final class StudentServiceGrpc {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getBiTalkMethod(), responseObserver);
     }
 
-    /**
-     */
-    public void testOutPutConfigUpdate(com.apachee.netty.eighthexample.proto.MyRequest request,
-        io.grpc.stub.StreamObserver<com.apachee.netty.eighthexample.proto.StreamResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTestOutPutConfigUpdateMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -283,13 +245,6 @@ public final class StudentServiceGrpc {
                 com.apachee.netty.eighthexample.proto.StreamRequest,
                 com.apachee.netty.eighthexample.proto.StreamResponse>(
                   this, METHODID_BI_TALK)))
-          .addMethod(
-            getTestOutPutConfigUpdateMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-              new MethodHandlers<
-                com.apachee.netty.eighthexample.proto.MyRequest,
-                com.apachee.netty.eighthexample.proto.StreamResponse>(
-                  this, METHODID_TEST_OUT_PUT_CONFIG_UPDATE)))
           .build();
     }
   }
@@ -339,14 +294,6 @@ public final class StudentServiceGrpc {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getBiTalkMethod(), getCallOptions()), responseObserver);
     }
-
-    /**
-     */
-    public void testOutPutConfigUpdate(com.apachee.netty.eighthexample.proto.MyRequest request,
-        io.grpc.stub.StreamObserver<com.apachee.netty.eighthexample.proto.StreamResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getTestOutPutConfigUpdateMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -377,14 +324,6 @@ public final class StudentServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getGetStudentsByAgeMethod(), getCallOptions(), request);
     }
-
-    /**
-     */
-    public java.util.Iterator<com.apachee.netty.eighthexample.proto.StreamResponse> testOutPutConfigUpdate(
-        com.apachee.netty.eighthexample.proto.MyRequest request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getTestOutPutConfigUpdateMethod(), getCallOptions(), request);
-    }
   }
 
   /**
@@ -412,9 +351,8 @@ public final class StudentServiceGrpc {
 
   private static final int METHODID_GET_REAL_NAME_BY_USERNAME = 0;
   private static final int METHODID_GET_STUDENTS_BY_AGE = 1;
-  private static final int METHODID_TEST_OUT_PUT_CONFIG_UPDATE = 2;
-  private static final int METHODID_GET_STUDENTS_WRAPPER_BY_AGES = 3;
-  private static final int METHODID_BI_TALK = 4;
+  private static final int METHODID_GET_STUDENTS_WRAPPER_BY_AGES = 2;
+  private static final int METHODID_BI_TALK = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -440,10 +378,6 @@ public final class StudentServiceGrpc {
         case METHODID_GET_STUDENTS_BY_AGE:
           serviceImpl.getStudentsByAge((com.apachee.netty.eighthexample.proto.StudentRequest) request,
               (io.grpc.stub.StreamObserver<com.apachee.netty.eighthexample.proto.StudentResponse>) responseObserver);
-          break;
-        case METHODID_TEST_OUT_PUT_CONFIG_UPDATE:
-          serviceImpl.testOutPutConfigUpdate((com.apachee.netty.eighthexample.proto.MyRequest) request,
-              (io.grpc.stub.StreamObserver<com.apachee.netty.eighthexample.proto.StreamResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -516,7 +450,6 @@ public final class StudentServiceGrpc {
               .addMethod(getGetStudentsByAgeMethod())
               .addMethod(getGetStudentsWrapperByAgesMethod())
               .addMethod(getBiTalkMethod())
-              .addMethod(getTestOutPutConfigUpdateMethod())
               .build();
         }
       }

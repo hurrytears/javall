@@ -1,6 +1,7 @@
 package com.apachee.netty.eighthexample;
-import io.grpc.stub.StreamObserver;
+
 import com.apachee.netty.eighthexample.proto.*;
+import io.grpc.stub.StreamObserver;
 
 import java.util.UUID;
 

@@ -1,10 +1,9 @@
 package com.apachee.netty.eighthexample;
 
+import com.apachee.netty.eighthexample.proto.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-import com.apachee.netty.eighthexample.proto.*;
-
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
