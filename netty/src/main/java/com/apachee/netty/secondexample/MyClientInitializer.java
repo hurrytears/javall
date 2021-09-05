@@ -12,6 +12,8 @@ import io.netty.util.CharsetUtil;
 public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+        // 因为定义传的是String，所以这里需要自定义编解码
+        // 第一个例子中是传的httpRequest，应该已经实现了编解码
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
         pipeline.addLast(new LengthFieldPrepender(4));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));

@@ -12,12 +12,14 @@ public class ThriftServer {
     public static void main(String[] args) throws Exception {
         //非阻塞的
         TNonblockingServerSocket socket = new TNonblockingServerSocket(8899);
-        //高可用
+        //不是高可用，是半同步半异步
         THsHaServer.Args arg = new THsHaServer.Args(socket).minWorkerThreads(2).maxWorkerThreads(4);
         //处理器
         PersonService.Processor<PersonServiceImpl> processor = new PersonService.Processor<>(new PersonServiceImpl());
 
+        // 压缩的二进制流,这个是数据格式
         arg.protocolFactory(new TCompactProtocol.Factory());
+        // frame，这个是传输方式
         arg.transportFactory(new TFramedTransport.Factory());
         arg.processorFactory(new TProcessorFactory(processor));
 

@@ -9,6 +9,7 @@ import org.apache.thrift.transport.TTransport;
 public class ThriftClient {
     public static void main(String[] args) {
         TTransport transport = new TFramedTransport(new TSocket("localhost", 8899), 600);
+        // 这个要和服务端保持一致
         TProtocol protocol = new TCompactProtocol(transport);
         PersonService.Client client = new PersonService.Client(protocol);
 
