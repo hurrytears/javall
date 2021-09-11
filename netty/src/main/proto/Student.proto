@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package com.apachee.netty.eighthexample;
 
-option java_package = "com.apachee.netty.eighthexample";
+option java_package = "com.apachee.netty.eighthexample.proto";
 option java_outer_classname = "StudentProto";
 option java_multiple_files = true;
 
@@ -14,6 +14,8 @@ service StudentService {
     rpc GetStudentsWrapperByAges(stream StudentRequest) returns (StudentResponseList) {}
 
     rpc BiTalk(stream StreamRequest) returns (stream StreamResponse) {}
+
+    //rpc TestOutPutConfigUpdate(MyRequest) returns (stream StreamResponse) {}
 }
 
 message MyRequest {

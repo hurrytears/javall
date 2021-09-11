@@ -1,5 +1,6 @@
 package com.apachee.netty.eighthexample;
 
+import com.apachee.netty.eighthexample.proto.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -14,22 +15,22 @@ public class GrpcClient {
                 .usePlaintext().build();
         StudentServiceGrpc.StudentServiceBlockingStub blockingStub = StudentServiceGrpc.newBlockingStub(managedChannel);
         StudentServiceGrpc.StudentServiceStub stub = StudentServiceGrpc.newStub(managedChannel);
-        com.apachee.netty.eighthexample.MyResponse myResponse = blockingStub.getRealNameByUsername(com.apachee.netty.eighthexample.MyRequest.newBuilder().setUsername("张三").build());
+        MyResponse myResponse = blockingStub.getRealNameByUsername(MyRequest.newBuilder().setUsername("张三").build());
         System.out.println(myResponse.getRealname());
 
         System.out.println("-------------------------");
 
-        Iterator<com.apachee.netty.eighthexample.StudentResponse> students = blockingStub.getStudentsByAge(com.apachee.netty.eighthexample.StudentRequest.newBuilder().setAge(20).build());
+        Iterator<StudentResponse> students = blockingStub.getStudentsByAge(StudentRequest.newBuilder().setAge(20).build());
         while (students.hasNext()){
-            com.apachee.netty.eighthexample.StudentResponse studentResponse = students.next();
+            StudentResponse studentResponse = students.next();
             System.out.println(studentResponse.getName()+"  "+studentResponse.getAge()+" " + studentResponse.getCity());
         }
 
         System.out.println("-------------------------");
 
-        StreamObserver<com.apachee.netty.eighthexample.StudentResponseList> studentResponseListStreamObserver = new StreamObserver<com.apachee.netty.eighthexample.StudentResponseList>() {
+        StreamObserver<StudentResponseList> studentResponseListStreamObserver = new StreamObserver<StudentResponseList>() {
             @Override
-            public void onNext(com.apachee.netty.eighthexample.StudentResponseList studentResponseList) {
+            public void onNext(StudentResponseList studentResponseList) {
                 studentResponseList.getStudentResponseList().forEach(studentResponse -> {
                     System.out.println(studentResponse.getName());
                     System.out.println(studentResponse.getAge());
@@ -50,10 +51,10 @@ public class GrpcClient {
         };
 
         // 流式请求，不能用blockingStub
-        StreamObserver<com.apachee.netty.eighthexample.StudentRequest> studentRequestStreamObserver = stub.getStudentsWrapperByAges(studentResponseListStreamObserver);
-        studentRequestStreamObserver.onNext(com.apachee.netty.eighthexample.StudentRequest.newBuilder().setAge(30).getDefaultInstanceForType());
-        studentRequestStreamObserver.onNext(com.apachee.netty.eighthexample.StudentRequest.newBuilder().setAge(40).getDefaultInstanceForType());
-        studentRequestStreamObserver.onNext(com.apachee.netty.eighthexample.StudentRequest.newBuilder().setAge(50).getDefaultInstanceForType());
+        StreamObserver<StudentRequest> studentRequestStreamObserver = stub.getStudentsWrapperByAges(studentResponseListStreamObserver);
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(30).getDefaultInstanceForType());
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(40).getDefaultInstanceForType());
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(50).getDefaultInstanceForType());
 
         studentRequestStreamObserver.onCompleted();
 

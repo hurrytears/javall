@@ -18,7 +18,7 @@ public class WebSocketChannelInitializer extends ChannelInitializer<SocketChanne
         pipeline.addLast(new ChunkedWriteHandler());
         // 聚合为FullHttpRequest,FullHttpResponse
         pipeline.addLast(new HttpObjectAggregator(8192));
-        // 专门针对websocket
+        // 专门针对websocket, /ws是uri
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         pipeline.addLast(new TextWebSocketFrameHandler());
