@@ -1,0 +1,51 @@
+-- 打开PostGis，必须是一个数据库开启一个
+-- Enable PostGIS (as of 3.0 contains just geometry/geography)
+CREATE EXTENSION postgis;
+-- enable raster support (for 3+)
+CREATE EXTENSION postgis_raster;
+-- Enable Topology
+CREATE EXTENSION postgis_topology;
+-- Enable PostGIS Advanced 3D
+-- and other geoprocessing algorithms
+-- sfcgal not available with all distributions
+CREATE EXTENSION postgis_sfcgal;
+-- fuzzy matching needed for Tiger
+CREATE EXTENSION fuzzystrmatch;
+-- rule based standardizer
+CREATE EXTENSION address_standardizer;
+-- example rule data set
+CREATE EXTENSION address_standardizer_data_us;
+-- Enable US Tiger Geocoder
+CREATE EXTENSION postgis_tiger_geocoder;
+
+-- 更新插件
+-- Upgrade PostGIS (includes raster) to latest version
+ALTER EXTENSION postgis UPDATE;
+ALTER EXTENSION postgis_topology UPDATE;
+
+-- 示例
+-- Create table with spatial column
+CREATE TABLE mytable (
+  id SERIAL PRIMARY KEY,
+  geom GEOMETRY(Point, 26910),
+  name VARCHAR(128)
+);
+
+-- Add a spatial index
+CREATE INDEX mytable_gix
+  ON mytable
+  USING GIST (geom);
+
+-- Add a point
+INSERT INTO mytable (geom) VALUES (
+  ST_GeomFromText('POINT(0 0)', 26910)
+);
+
+-- Query for nearby points
+SELECT id, name
+FROM mytable
+WHERE ST_DWithin(
+  geom,
+  ST_GeomFromText('POINT(0 0)', 26910),
+  1000
+);
