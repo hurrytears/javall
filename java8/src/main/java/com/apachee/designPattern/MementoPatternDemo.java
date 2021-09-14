@@ -3,7 +3,7 @@ package com.apachee.designPattern;
 import java.util.ArrayList;
 import java.util.List;
 
-// 备忘录模式2
+// 备忘录模式
 
 class Memento {
     private String state;
