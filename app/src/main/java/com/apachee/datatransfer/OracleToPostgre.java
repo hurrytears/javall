@@ -18,16 +18,20 @@ public class OracleToPostgre {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, user, password);
         Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("select * from cfg_district_border");
-        OutputStream os = new FileOutputStream("data/output/cfg_map_region.csv");
+        ResultSet resultSet = statement.executeQuery("select * from CFG_MAP_SCENE_LOAD11");
+        OutputStream os = new FileOutputStream("data/output/cfg_map_scene.csv");
         while(resultSet.next()) {
             String line = resultSet.getString("city")+","+
                     resultSet.getString("planet_id")+","+
-                    resultSet.getString("border_name").replaceAll("\n","").replaceAll("\n","")+","+
+                    resultSet.getString("scene_name").replaceAll("\n","").replaceAll("\n","")+","+
                     resultSet.getString("centroidx")+","+
-                    resultSet.getString("centroidy")+","+
-                    resultSet.getString("vmap")+"\r\n";
-            System.out.println(line);
+                    resultSet.getString("centroidy")+",";
+            String[] vmap = resultSet.getString("vmap").split(";");
+            if(vmap[0].equals(vmap[vmap.length-1])){
+                line = line + resultSet.getString("vmap")+"\r\n";
+            }else {
+                line = line + resultSet.getString("vmap")+ ";" + vmap[0] +"\r\n";
+            }
             os.write(line.getBytes());
         }
         os.flush();
