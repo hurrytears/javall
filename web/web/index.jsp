@@ -11,6 +11,6 @@
     <title>Hello Tomcat</title>
   </head>
   <body>
-  $END$
+  你好
   </body>
 </html>

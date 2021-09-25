@@ -1,6 +1,5 @@
 package com.apachee.datatransfer;
 
-import oracle.sql.STRUCT;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
