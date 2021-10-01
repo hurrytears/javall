@@ -1,8 +1,6 @@
-.idea
 .gradle
-buildSrc/.gradle/*
-*/build
+.idea
+build
 data
-classes
 *.iml
-*/target
+classes
