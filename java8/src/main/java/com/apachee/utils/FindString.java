@@ -7,7 +7,7 @@ public class FindString {
     static BufferedReader br;
 
     public static void main(String[] args) throws IOException {
-        File dir = new File("d:/code");
+        File dir = new File("d:/Code");
         find(dir);
     }
 

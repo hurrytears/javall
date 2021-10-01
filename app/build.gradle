@@ -1,5 +1,13 @@
 plugins {
     id 'com.apachee.java-conventions'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+}
+
+jar{
+    manifest{
+        // 文件声明主程序入口
+        attributes 'Main-class': 'com.apachee.logger.Demo'
+    }
 }
 
 dependencies {
