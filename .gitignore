@@ -1,7 +1,6 @@
 .gradle
 .idea
 build
-buildSrc
 data
 *.iml
 classes
