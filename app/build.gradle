@@ -1,5 +1,6 @@
 plugins {
     id 'com.apachee.java-conventions'
+    // 打包专用 gradle shadowJar
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
