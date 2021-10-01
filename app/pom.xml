@@ -46,6 +46,7 @@
             <groupId>com.oracle.database.xml</groupId>
             <artifactId>xdb</artifactId>
             <version>21.1.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
         <dependency>
             <groupId>org.slf4j</groupId>
