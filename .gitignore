@@ -1,7 +1,7 @@
 .idea
+.gradle
 */build
 data
 classes
-out
 *.iml
 */target
