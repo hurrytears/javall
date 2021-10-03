@@ -13,7 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 忽略拦截
-        web.ignoring().antMatchers("/vercode");
+        web.ignoring().antMatchers("/welcome/upload");
     }
 
     // 配置security 登录用户，这个和application.properties 文件配置冲突
