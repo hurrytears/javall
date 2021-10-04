@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 忽略拦截
