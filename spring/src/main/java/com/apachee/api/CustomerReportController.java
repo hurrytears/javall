@@ -17,12 +17,6 @@ import java.io.IOException;
 public class CustomerReportController {
     private static final Logger log = LoggerFactory.getLogger(CustomerReportController.class);
 
-    @RequestMapping("welcome")
-    public ModelAndView welcome(){
-        log.info("登录成功");
-        return new ModelAndView("welcome");
-    }
-
     @RequestMapping("upload")
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
         System.out.println("................");
