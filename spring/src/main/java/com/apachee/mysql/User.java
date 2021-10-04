@@ -1,5 +1,6 @@
 package com.apachee.mysql;
 
+import javax.annotation.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
