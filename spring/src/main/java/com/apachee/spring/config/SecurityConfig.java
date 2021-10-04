@@ -2,18 +2,20 @@ package com.apachee.spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -31,17 +33,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     // 配置security 登录用户，这个和application.properties 文件配置冲突
-    @Bean
     @Override
-    public UserDetailsService userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin").password(encoder.encode("123456")).roles("SuperAdmin")
+                .and()
+                .withUser("sosog").password(encoder.encode("123456")).roles("Admin")
+                .and()
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 }
