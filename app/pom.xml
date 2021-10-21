@@ -54,6 +54,12 @@
             <version>1.7.32</version>
             <scope>compile</scope>
         </dependency>
+        <!--        邮件          -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
     </dependencies>
 
     <!--打可执行jar包-->
