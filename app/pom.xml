@@ -71,7 +71,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.apachee.mvn.Demo</mainClass>
+                            <mainClass>com.apachee.email.SendEmail</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
