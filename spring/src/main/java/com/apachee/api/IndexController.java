@@ -1,7 +1,9 @@
 package com.apachee.api;
 
 import com.apachee.pojo.Greeting;
+import com.apachee.pojo.Msg;
 import com.apachee.utils.DateUtil;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +25,16 @@ public class IndexController {
         return new Greeting(id.incrementAndGet(), String.format(templete, username));
     }
 
-    @GetMapping("/login")
-    public ModelAndView index(@RequestParam(value = "name", defaultValue = "World") String name){
-        return new ModelAndView("login");
+    @GetMapping("/login2")
+    public ModelAndView login(){
+        return new ModelAndView("login2");
+    }
+
+    @RequestMapping("/security")
+    public String index(Model model){
+        Msg msg = new Msg("测试标题", "测试内容", "额外信息，只对管理员显示");
+        model.addAttribute("msg", msg);
+        return "index";
     }
 
 }

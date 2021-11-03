@@ -1,12 +1,9 @@
 package com.apachee.mysql;
 
-import javax.annotation.ManagedBean;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "T_USER")
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -39,4 +36,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
