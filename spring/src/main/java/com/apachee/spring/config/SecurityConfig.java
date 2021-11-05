@@ -19,7 +19,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    public static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Bean
     UserDetailsService customUserService(){
@@ -35,23 +35,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/**").hasAnyRole("ROLE_ADMIN","ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
+                .formLogin().loginPage("/login").successForwardUrl("/index").failureUrl("/login?error").permitAll()
                 .and()
                 // 前后端分离的csrf cookie 配置，允许js提取cookie
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+//                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and()
                 .logout().permitAll();
     }
 
     // 配置security 登录用户，这个和application.properties 文件配置冲突
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 内存用户配置
 //        auth.inMemoryAuthentication()
 //                .withUser("admin").password(encoder.encode("123456")).roles("admin")
 //                .and()
 //                .withUser("sosog").password(encoder.encode("123456")).roles("dep")
 //                .and()
 //                .passwordEncoder(encoder);
-        auth.userDetailsService(customUserService());
+        // 数据库用户配置
+        auth.userDetailsService(customUserService()).passwordEncoder(encoder);
     }
 }

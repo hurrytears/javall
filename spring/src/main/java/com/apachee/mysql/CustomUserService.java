@@ -1,5 +1,6 @@
 package com.apachee.mysql;
 
+import com.apachee.spring.config.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.
@@ -12,8 +13,6 @@ public class CustomUserService implements UserDetailsService {
     @Autowired
     SysUserRepository userRepository;
 
-    BCryptPasswordEncoder encoder;
-
     @Override
     public UserDetails loadUserByUsername(String s)
             throws UsernameNotFoundException {
@@ -23,7 +22,7 @@ public class CustomUserService implements UserDetailsService {
         }
         System.out.println("s:" + s);
         System.out.println("username:" + user.getUsername()
-                + ";password:" + encoder.encode(user.getPassword()));
+                + ";password:" + SecurityConfig.encoder.encode(user.getPassword()));
         return user;
     }
 }
