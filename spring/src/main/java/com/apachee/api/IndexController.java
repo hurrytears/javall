@@ -2,6 +2,7 @@ package com.apachee.api;
 
 import com.apachee.pojo.Greeting;
 import com.apachee.pojo.Msg;
+import com.apachee.utils.DateUtil;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,8 @@ public class IndexController {
     @RequestMapping("/")
     public Greeting login(@RequestParam(defaultValue = "游客") String username,
                           @RequestParam(defaultValue = "123") String password){
-//        DateUtil dateUtil = new DateUtil();
-//        System.out.println(dateUtil.getCurrentTime());
+        DateUtil dateUtil = new DateUtil();
+        System.out.println(dateUtil.getCurrentTime());
         return new Greeting(id.incrementAndGet(), String.format(templete, username));
     }
 
