@@ -1,8 +1,11 @@
 package com.apachee.api;
 
+import com.apachee.pojo.EatFood;
 import com.apachee.pojo.Greeting;
 import com.apachee.pojo.Msg;
 import com.apachee.utils.DateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,17 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class IndexController {
+    // 自定义属性，application.properties 注入
+    @Value("${game.enterprise}")
+    private String gameEnterprise;
+    @Value("${game.name}")
+    private String gameName;
+    @Value("${game.taste}")
+    private String taste;
+
+    @Autowired
+    private EatFood eatFood;
+
     public static final String templete = "Hello, %s!";
     public static final AtomicLong id = new AtomicLong();
 
