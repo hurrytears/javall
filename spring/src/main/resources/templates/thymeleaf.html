@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf 学习</title>
+</head>
+<body>
+<h1 th:text="${msg}">刁德一搞得什么鬼花样</h1>
+<!-- 可以使用th:utext 指令来输出html-->
+<h1 th:text="${msgObject.content} +':'+ ${msgObject.title} +':'+ ${msgObject.extraInfo}">msg 对象实例</h1>
+<!--假如属性名是变量，可以${user['name']} -->
+
+<!--这里展示了省略对象名的写法-->
+<h2 th:object="${user}">
+    <p>Name: <span th:text="*{name}">Jack</span>.</p>
+    <p>Age: <span th:text="*{email}">21</span>.</p>
+</h2>
+
+<h2 th:object="${user}">
+    <p>FirstName: <span th:text="*{name.split(' ')[0]}">Jack</span>.</p>
+    <p>LastName: <span th:text="*{name.split(' ')[1]}">Li</span>.</p>
+</h2>
+
+
+<!--
+环境相关对象
+#ctx	获取Thymeleaf自己的Context对象
+#requset	如果是web程序，可以获取HttpServletRequest对象
+#response	如果是web程序，可以获取HttpServletReponse对象
+#session	如果是web程序，可以获取HttpSession对象
+#servletContext	如果是web程序，可以获取HttpServletContext对象
+
+
+#dates	处理java.util.date的工具对象
+#calendars	处理java.util.calendar的工具对象
+#numbers	用来对数字格式化的方法
+#strings	用来处理字符串的方法
+#bools	用来判断布尔值的方法
+#arrays	用来护理数组的方法
+#lists	用来处理List集合的方法
+#sets	用来处理set集合的方法
+#maps	用来处理map集合的方法
+-->
+<p>
+    今天是: <span th:text="${#dates.format(today,'yyyy-MM-dd')}">2018-04-25</span>
+</p>
+
+<p>
+    你正在观看 <span th:text="'thymeleaf'">template</span> 的字符串常量值.
+</p>
+
+<p>今年是 <span th:text="2018">1900</span>.</p>
+<p>两年后将会是 <span th:text="2018 + 2">1902</span>.</p>
+
+<span th:text="'欢迎您:' + ${user.name} + '!'"></span>
+<span th:text="|欢迎您:${user.name}|"></span>
+
+<span th:text="${user.age}"></span>         //21
+<span th:text="${user.age}%2 == 0"></span>  //false
+
+<span th:text="${user.sex} ? '男':'女'"></span>
+<!--非空判断-->
+<span th:text="${user.name} ?: '二狗'"></span>
+
+<!--循环-->
+<tr th:each="user,stat : ${users}">
+    <td th:text="${user.name}">Onions</td>
+    <td th:text="${user.age}">2.41</td>
+</tr>
+<!--
+stat对象包含以下属性：
+
+index，从0开始的角标
+
+count，元素的个数，从1开始
+
+size，总元素个数
+
+current，当前遍历到的元素
+
+even/odd，返回是否为奇偶，boolean值
+
+first/last，返回是否为第一或最后，boolean值
+-->
+
+<!-- if 判断，否就不显示 -->
+<span th:if="${user.age} > 24">老油条</span>
+
+
+
+<div th:switch="${user.role}">
+    <p th:case="'admin'">用户是管理员</p>
+    <p th:case="'manager'">用户是经理</p>
+    <p th:case="*">用户是别的玩意</p>
+</div>
+
+<!-- 渲染js -->
+<script th:inline="javascript">
+    const user = /*[[${user}]]*/ {};
+    const age = /*[[${user.age}]]*/ 20;
+    console.log(user);
+    console.log(age)
+</script>
+</body>
+</html>
