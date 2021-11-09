@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.apachee"})
@@ -19,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.apachee.mysql"})
 @EntityScan(basePackages = {"com.apachee.mysql"})
 @ImportResource({"classpath:some-context.xml","classpath:web.xml"})
+@EnableTransactionManagement
 public class Application {
 
     public static void main(String[] args) {
