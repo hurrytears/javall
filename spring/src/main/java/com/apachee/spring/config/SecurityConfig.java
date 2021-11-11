@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 // 这里配置的也只是get方式提交的请求不需要拦截
-                .antMatchers("/css/**", "/js/**", "/").permitAll()
+                .antMatchers("/css/**", "/js/**").permitAll()
                 .antMatchers("/users/**").hasAnyRole("ROLE_ADMIN","ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
@@ -57,5 +57,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 数据库用户配置
         auth.userDetailsService(customUserService()).passwordEncoder(encoder);
     }
-
 }
