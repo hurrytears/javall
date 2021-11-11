@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login").successForwardUrl("/index").failureUrl("/login?error").permitAll()
                 .and()
                 .csrf().disable()
+                .cors()
+                .and()
                 // 前后端分离的csrf cookie 配置，允许js提取cookie
 //                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .and()
