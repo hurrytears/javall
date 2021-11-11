@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/login").successForwardUrl("/index").failureUrl("/login?error").permitAll()
                 .and()
+                .csrf().disable()
                 // 前后端分离的csrf cookie 配置，允许js提取cookie
 //                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .and()
@@ -56,4 +57,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 数据库用户配置
         auth.userDetailsService(customUserService()).passwordEncoder(encoder);
     }
+
 }
