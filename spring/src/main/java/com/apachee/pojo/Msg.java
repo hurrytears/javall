@@ -1,41 +1,61 @@
 package com.apachee.pojo;
 
+
 public class Msg {
-    private String title;
-    private String content;
-    private String extraInfo;
+    private int code;
+    private String status;
+    private String msg;
 
-    public Msg() {
+    public static Msg success(){
+        return success("请求成功");
     }
 
-    public String getTitle() {
-        return title;
+    public static Msg fail(){
+        return fail("请求失败");
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public static Msg success(String msg){
+        return new Msg(200, "成功", msg);
     }
 
-    public String getContent() {
-        return content;
+    public static Msg fail(String msg){
+        return new Msg(200, "失败", msg);
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public Msg(){
     }
 
-    public String getExtraInfo() {
-        return extraInfo;
+    public Msg(int code, String status, String msg){
+        this.code = code;
+        this.status = status;
+        this.msg = msg;
     }
 
-    public void setExtraInfo(String extraInfo) {
-        this.extraInfo = extraInfo;
+    public int getCode() {
+        return code;
     }
 
-    public Msg(String title, String content, String extraInfo) {
-        this.title = title;
-        this.content = content;
-        this.extraInfo = extraInfo;
+    public void setCode(int code) {
+        this.code = code;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+
+
 
 }
