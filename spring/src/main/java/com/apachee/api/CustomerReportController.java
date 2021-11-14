@@ -19,6 +19,12 @@ import java.nio.file.Path;
 public class CustomerReportController {
     private static final Logger log = LoggerFactory.getLogger(CustomerReportController.class);
 
+    /**
+     * 上传文件
+     * @param file
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping("upload")
     public Msg upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes){
         if(file.isEmpty()){
@@ -34,5 +40,11 @@ public class CustomerReportController {
             log.error(e.toString(), e);
         }
         return Msg.fail("文件上传失败");
+    }
+
+    @RequestMapping("list")
+    public Msg list(){
+
+        return Msg.success();
     }
 }
