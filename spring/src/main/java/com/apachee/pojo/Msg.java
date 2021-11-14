@@ -4,7 +4,7 @@ package com.apachee.pojo;
 public class Msg {
     private int code;
     private String status;
-    private String msg;
+    private Object msg;
 
     public static Msg success(){
         return success("请求成功");
@@ -14,18 +14,18 @@ public class Msg {
         return fail("请求失败");
     }
 
-    public static Msg success(String msg){
+    public static Msg success(Object msg){
         return new Msg(200, "成功", msg);
     }
 
-    public static Msg fail(String msg){
+    public static Msg fail(Object msg){
         return new Msg(200, "失败", msg);
     }
 
     public Msg(){
     }
 
-    public Msg(int code, String status, String msg){
+    public Msg(int code, String status, Object msg){
         this.code = code;
         this.status = status;
         this.msg = msg;
@@ -47,7 +47,7 @@ public class Msg {
         this.status = status;
     }
 
-    public String getMsg() {
+    public Object getMsg() {
         return msg;
     }
 
