@@ -1,8 +1,12 @@
 package com.apachee.api;
 
 import com.apachee.pojo.Msg;
+import com.apachee.spring.config.SecurityConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +17,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("customer")
 public class CustomerReportController {
     private static final Logger log = LoggerFactory.getLogger(CustomerReportController.class);
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * 上传文件
@@ -42,8 +51,18 @@ public class CustomerReportController {
         return Msg.fail("文件上传失败");
     }
 
-    @RequestMapping("list")
-    public Msg list(){
+    /**
+     * 获取任务清单
+     * @return
+     */
+    @RequestMapping("tasklist")
+    public Msg taskList(){
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from tasks");
+        return Msg.success(maps);
+    }
+
+    @RequestMapping("tasksubmit")
+    public Msg taskSubmit(){
 
         return Msg.success();
     }

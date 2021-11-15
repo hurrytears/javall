@@ -5,16 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Bean
-    UserDetailsService customUserService(){
+    UserDetailsService customUserService() {
         return new CustomUserService();
     }
 
@@ -31,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 // 这里配置的也只是get方式提交的请求不需要拦截
-                .antMatchers("/css/**", "/js/**").permitAll()
-                .antMatchers("/users/**").hasAnyRole("ROLE_ADMIN","ROLE_USER")
+                .antMatchers("/css/**", "/js/**", "/images/**", "/resources/**").permitAll()
+                .antMatchers("/users/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").successForwardUrl("/index").failureUrl("/login?error").permitAll()
@@ -40,10 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors()
                 .and()
+                .sessionManagement().invalidSessionUrl("/login").maximumSessions(1).maxSessionsPreventsLogin(true);
                 // 前后端分离的csrf cookie 配置，允许js提取cookie
 //                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .and()
-                .logout().permitAll();
+
+        // 注入一个自定义拦截器
+        http.addFilterBefore((request, response, filterChain) -> {
+                System.out.println("自定义拦截器启动");
+                // 继续后续的拦截活动
+                filterChain.doFilter(request, response);
+        }, FilterSecurityInterceptor.class);
     }
 
     // 配置security 登录用户，这个和application.properties 文件配置冲突

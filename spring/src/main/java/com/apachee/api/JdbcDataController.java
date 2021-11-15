@@ -18,14 +18,8 @@ public class JdbcDataController {
 
     @RequestMapping("/getusers")
     public Msg getUsers(){
-        System.out.println("获取到请求");
+        System.out.println("正在执行业务方法");
         List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_user");
-        for(Map<String, Object> map: maps){
-            System.out.println("查询到结果");
-            for (String key: map.keySet()){
-                System.out.println(key + ":" + map.get(key));
-            }
-        }
         return Msg.success(maps);
     }
 }
