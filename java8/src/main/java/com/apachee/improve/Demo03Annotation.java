@@ -1,4 +1,4 @@
-package com.apachee.Improve;
+package com.apachee.improve;
 
 enum People{
     P1, P2;

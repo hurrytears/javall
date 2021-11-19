@@ -2,10 +2,14 @@ package com.apachee.designPattern;
 
 // 装饰器模式
 
+// 继承的代替方法，应用于对象
+
+// Componet 抽象构建角色 InputStream
 interface Shape4 {
     void draw();
 }
 
+// 具体构建角色 bufferdInputStream
 class Rectangle4 implements Shape4 {
 
     @Override
@@ -14,6 +18,7 @@ class Rectangle4 implements Shape4 {
     }
 }
 
+// 具体构建角色
 class Circle4 implements Shape4 {
 
     @Override
@@ -22,6 +27,7 @@ class Circle4 implements Shape4 {
     }
 }
 
+// 装饰构建角色 FilterInputStream
 abstract class ShapeDecorator implements Shape4 {
     protected Shape4 decoratedShape;
 

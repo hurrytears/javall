@@ -1,6 +1,5 @@
-package com.apachee.Improve;
+package com.apachee.improve;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -149,7 +148,7 @@ public class Demo02Reflect {
             多用于对象的获取字节码的方式
      */
     static void show01() throws Exception {
-        Class cls1 = Class.forName("com.apachee.Improve.Person");
+        Class cls1 = Class.forName("com.apachee.improve.Person");
         System.out.println(cls1);
         Class cls2 = Person.class;
         System.out.println(cls2);

@@ -1,4 +1,4 @@
-package com.apachee.Improve;
+package com.apachee.improve;
 
 import org.junit.Assert;
 import org.junit.Test;
