@@ -34,6 +34,7 @@ public class NioClient {
                         ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
                         writeBuffer.put((LocalDateTime.now()+ "连接成功").getBytes());
                         writeBuffer.flip();
+                        // 写一次就直接触发事件
                         client.write(writeBuffer);
 
                         ExecutorService executorService = Executors.newSingleThreadExecutor(Executors.defaultThreadFactory());

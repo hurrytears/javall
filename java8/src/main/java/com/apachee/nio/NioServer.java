@@ -36,7 +36,14 @@ public class NioServer {
                 final SocketChannel client;
                 SelectionKey selectionKey = iter.next();
                 iter.remove();
+                // 验证服务端的监听方法是否会阻塞,证明单次请求还是会阻塞，遍历处理channel事件的时候是阻塞的
+                // 所以nio也不是啥好东西，还是得依赖多线程实现高并发
                 if (selectionKey.isAcceptable()) {
+                    try {
+                        Thread.sleep(1000000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();
                     client = server.accept();
                     client.configureBlocking(false);
