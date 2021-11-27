@@ -19,7 +19,7 @@ public class MyServer {
 
             ChannelFuture channelFuture = serverBootstrap.bind(9988).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();
         }
