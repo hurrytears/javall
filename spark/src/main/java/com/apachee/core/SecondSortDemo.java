@@ -23,7 +23,7 @@ public class SecondSortDemo {
             String[] arr = l.split(" ");
             SecondKey secondKey = new SecondKey(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
             return new Tuple2<>(secondKey, l);
-        }).sortByKey().foreach(v -> System.out.println(v));
+        }).sortByKey().foreach(System.out::println);
         sc.broadcast("abc");
 
     }
@@ -77,29 +77,25 @@ class SecondKey implements Ordered<SecondKey>, Serializable {
     @Override
     public boolean $less(SecondKey that) {
         if(this.first<that.first) return true;
-        else if(this.first == that.first && this.second < that.second) return true;
-        else return false;
+        else return this.first == that.first && this.second < that.second;
     }
 
     @Override
     public boolean $greater(SecondKey that) {
         if(this.first > that.first) return true;
-        else if(this.first == that.first && this.second > that.second) return true;
-        else return false;
+        else return this.first == that.first && this.second > that.second;
     }
 
     @Override
     public boolean $less$eq(SecondKey that) {
         if($less(that)) return true;
-        else if(this.first == that.first && this.second == that.second) return true;
-        else return false;
+        else return this.first == that.first && this.second == that.second;
     }
 
     @Override
     public boolean $greater$eq(SecondKey that) {
         if($greater(that)) return true;
-        else if(this.first == that.first && this.second == that.second) return true;
-        else return false;
+        else return this.first == that.first && this.second == that.second;
     }
 
     @Override
