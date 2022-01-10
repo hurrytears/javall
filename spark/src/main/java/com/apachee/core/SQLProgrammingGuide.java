@@ -1,6 +1,5 @@
 package com.apachee.core;
 
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.MapFunction;
@@ -24,7 +23,7 @@ public class SQLProgrammingGuide {
             .getOrCreate();
 
     @Test
-    public void startjdbc(){
+    public void mysqljdbc(){
         Properties properties = new Properties();
         properties.setProperty("user", "root");
         properties.setProperty("password", "Richr00t");
@@ -143,6 +142,55 @@ public class SQLProgrammingGuide {
                 Encoders.STRING()
         );
         namesDS.show();
+    }
+
+    @Test
+    public void genericLoadAndSaveFunction(){
+        // 配置默认存储格式: spark.sql.sources.default
+        Dataset<Row> peopleDF = spark.read().json("../data/test/person.json");
+        peopleDF.select("name", "age").write().parquet("namesAndAges.parquet");
+        Dataset<Row> usersDF = spark.read().load("../data/test/users.parquet");
+        usersDF.select("name", "favorite_color").write().save("namesAndFavColors.parquet");
+        Dataset<Row> peopleDFCsv = spark.read().format("csv")
+                .option("sep", ";")
+                .option("inferSchema", "true")
+                .option("header", "true")
+                .load("../data/test/people.csv");
+        usersDF.write().format("orc")
+                .option("orc.bloom.filter.columns", "favorite_color")
+                .option("orc.dictionary.key.threshold", "1.0")
+                .option("orc.column.encoding.direct", "name")
+                .save("../data/test/users_with_options.orc");
+        usersDF.write().format("parquet")
+                .option("parquet.bloom.filter.enabled#favorite_color", "true")
+                .option("parquet.bloom.filter.expected.ndv#favorite_color", "1000000")
+                .option("parquet.enable.dictionary", "true")
+                .option("parquet.page.write-checksum.enabled", "false")
+                .save("users_with_options.parquet");
+        Dataset<Row> sql = spark.sql("select * from parquet.`../data/test/users.parquet`");
+
+        peopleDF.write().bucketBy(42, "name").sortBy("age").saveAsTable("people_bucketed");
+        usersDF.write()
+                .partitionBy("favorite_color")
+                .format("parquet")
+                .save("namesPartByColor.parquet");
+        usersDF
+                .write()
+                .partitionBy("favorite_color")
+                .bucketBy(42, "name")
+                .saveAsTable("users_partitioned_bucketed");
+        // 外部分区表需要 MSCK REPAIR TABLE
+    }
+
+    @Test
+    public void genericFileSourceOption(){
+        /**
+         * dir1/
+         *  ├── dir2/
+         *  │    └── file2.parquet (schema: <file: string>, content: "file2.parquet")
+         *  └── file1.parquet (schema: <file, string>, content: "file1.parquet")
+         *  └── file3.json (schema: <file, string>, content: "{'file':'corrupt.json'}")
+         */
     }
 
 
