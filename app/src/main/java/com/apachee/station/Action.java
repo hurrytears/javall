@@ -18,16 +18,17 @@ public class Action {
     private JTextArea infoTextArea;
 
     private File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
-    private String csv, xml;
+    private String csv = "";
+    private String xml = "";
 
-    JLabel paintJLabel(String txt, int x, int y, int width, int height) {
+    private JLabel paintJLabel(String txt, int x, int y, int width, int height) {
         JLabel label = new JLabel(txt);
         label.setFont(new Font("Serif", Font.BOLD, 40));
         label.setBounds(x, y, width, height);
         return label;
     }
 
-    JTextField paintJTextField(int x, int y) {
+    private JTextField paintJTextField(int x, int y) {
         JTextField text = new JTextField(200);
         text.setFont(new Font("Serif", Font.PLAIN, 20));
         text.setBounds(x, y, 250, 50);
@@ -40,7 +41,7 @@ public class Action {
         return text;
     }
 
-    JButton paintJButton(String txt, int x, int y, String type) {
+    private JButton paintJButton(String txt, int x, int y, String type) {
         JButton button = new JButton(txt);
         button.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 35));
         button.setBounds(x, y, 260, 50);
@@ -67,7 +68,7 @@ public class Action {
                     }
                 }
             } else if (type.equals("generate")) {
-
+                generateFile();
             } else if (type.equals("reset")) {
                 xml = "";
                 csv = "";
@@ -79,7 +80,7 @@ public class Action {
 }
 
     // 文件选择按钮
-    JButton paintJButton(int y, String type) {
+    private JButton paintJButton(int y, String type) {
         JButton button = new JButton("...");
         button.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 25));
         button.setBounds(410, y, 50, 50);
@@ -111,7 +112,7 @@ public class Action {
         return button;
     }
 
-    void placeComponents(JPanel panel) {
+    private void placeComponents(JPanel panel) {
         panel.setLayout(null);
 
         csvLabel = paintJLabel("CSV", 40, 20, 110, 40);
@@ -143,6 +144,15 @@ public class Action {
         panel.add(infoTextArea);
     }
 
+    private void generateFile(){
+        if("".equals(xml) || "".equals("csv")){
+            infoTextArea.append("请先指定CSV和XML文件！\n");
+        }else {
+            // 根据规则，转换xml
+
+        }
+    }
+
     public static void main(String[] args) {
         Action action = new Action();
         JFrame frame = new JFrame("基站转换");
@@ -160,6 +170,5 @@ public class Action {
         // 设置界面可见
         frame.setVisible(true);
     }
-
 
 }
