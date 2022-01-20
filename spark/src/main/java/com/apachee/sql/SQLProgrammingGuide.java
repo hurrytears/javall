@@ -1,9 +1,10 @@
-package com.apachee.core;
+package com.apachee.sql;
 
-import org.apache.spark.SparkConf;
+import com.apachee.core.Cube;
+import com.apachee.core.Person;
+import com.apachee.core.Square;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.MapFunction;
 import org.apache.spark.sql.*;
@@ -15,7 +16,6 @@ import org.junit.Test;
 import java.util.*;
 
 import static org.apache.spark.sql.functions.col;
-import static org.apache.spark.sql.functions.percentile_approx;
 
 public class SQLProgrammingGuide {
 

@@ -13,15 +13,17 @@ public class Test {
         Test test = new Test();
         SAXReader reader = new SAXReader();
         //2.加载xml
-        Document document = reader.read(new File("D:/javall/data/test/test.xml"));
+        File f = new File("C:\\Users\\sosog\\Desktop\\StationTransform\\SourceDir\\dump.xml");
+        System.out.println(f.getPath());
+        Document document = reader.read(f);
         Element rootElement = document.getRootElement();
-        for(Object o: rootElement.elements()){
-            Element element = (Element) o;
-            System.out.println("::::" + element.attributeValue("rollno"));
-            for(Object level2 :element.elements()){
-                Element e = (Element) level2;
-                System.out.println(e.getStringValue());
-            }
-        }
+//        for(Object o: rootElement.elements()){
+//            Element element = (Element) o;
+//            System.out.println("::::" + element.attributeValue("rollno"));
+//            for(Object level2 :element.elements()){
+//                Element e = (Element) level2;
+//                System.out.println(e.getStringValue());
+//            }
+//        }
     }
 }

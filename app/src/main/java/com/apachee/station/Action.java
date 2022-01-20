@@ -74,6 +74,7 @@ public class Action {
                         }
                         infoTextArea.append(type.toUpperCase() + "模板下载成功，位置：" + file.getAbsolutePath() + "\n");
                     } catch (Exception ex) {
+                        ex.printStackTrace();
                         infoTextArea.append(ex.getMessage() + "\n");
                     }
                 }
@@ -191,12 +192,13 @@ public class Action {
                 String MRBTS_ID, Vlan_ID, IPv4, Gateway, MME;
 
                 while ((line = br.readLine()) != null) {
+                    line = line.replaceAll("\"","");
                     String[] cols = line.split(",");
                     MRBTS_ID = cols[0];
                     Vlan_ID = cols[1];
                     IPv4 = cols[2];
                     Gateway = cols[3];
-                    MME = cols[4] + cols[5] + cols[6] + cols[7] + cols[8];
+                    MME = line.substring(cols[0].length()+cols[1].length()+cols[2].length()+cols[3].length()+4);
 
                     // VLANIF
                     String VLANIF_distName = "PLMN-PLMN/MRBTS-" + MRBTS_ID + "/TNLSVC-1/TNL-1/ETHSVC-1/ETHIF-1/VLANIF-";
@@ -489,14 +491,15 @@ public class Action {
                 // 设置编码格式
                 format.setEncoding("UTF-8");
                 // 6、生成xml文件
-                File file = new File("rss.xml");
+                File file = new File(desktopDir.getPath() +"/rss.xml");
                 XMLWriter writer = new XMLWriter(new FileOutputStream(file), format);
                 // 设置是否转义，默认使用转义字符
                 writer.setEscapeText(false);
                 writer.write(document);
                 writer.close();
-                infoTextArea.append("生成rss.xml成功" + "\n");
+                infoTextArea.append("成功："+ file.getPath() + "\n");
             } catch (Exception e) {
+                e.printStackTrace();
                 infoTextArea.append(e.toString() + "\n");
             }
         }
@@ -504,7 +507,11 @@ public class Action {
 
     @Test
     public void a() {
-
+        String a = "a,b,c,\"d,e\"";
+        a = a.replaceAll("\"","");
+        String[] arr = a.split(",");
+        System.out.println(arr[0].length()+arr[1].length()+arr[2].length()+3);
+        System.out.println(a.substring(6));
     }
 
     public static void main(String[] args) {
