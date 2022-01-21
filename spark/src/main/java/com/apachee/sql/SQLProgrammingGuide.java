@@ -13,6 +13,7 @@ import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.*;
 
 import static org.apache.spark.sql.functions.col;
@@ -352,5 +353,229 @@ public class SQLProgrammingGuide {
         // Read encrypted dataframe files
         Dataset<Row> df2 = spark.read().parquet("/path/to/table.parquet.encrypted");
 
+    }
+
+    @Test
+    public void orcFiles(){
+        // Schema Merging == schema evolution
+
+    }
+
+    @Test
+    public void jsonFiles(){
+        // A JSON dataset is pointed to by path.
+        // The path can be either a single text file or a directory storing text files
+        Dataset<Row> people = spark.read().json("examples/src/main/resources/people.json");
+
+        // The inferred schema can be visualized using the printSchema() method
+        people.printSchema();
+        // root
+        //  |-- age: long (nullable = true)
+        //  |-- name: string (nullable = true)
+
+        // Creates a temporary view using the DataFrame
+        people.createOrReplaceTempView("people");
+
+        // SQL statements can be run by using the sql methods provided by spark
+        Dataset<Row> namesDF = spark.sql("SELECT name FROM people WHERE age BETWEEN 13 AND 19");
+        namesDF.show();
+        // +------+
+        // |  name|
+        // +------+
+        // |Justin|
+        // +------+
+
+        // Alternatively, a DataFrame can be created for a JSON dataset represented by
+        // a Dataset<String> storing one JSON object per string.
+        List<String> jsonData = Arrays.asList(
+                "{\"name\":\"Yin\",\"address\":{\"city\":\"Columbus\",\"state\":\"Ohio\"}}");
+        Dataset<String> anotherPeopleDataset = spark.createDataset(jsonData, Encoders.STRING());
+        Dataset<Row> anotherPeople = spark.read().json(anotherPeopleDataset);
+        anotherPeople.show();
+        // +---------------+----+
+        // |        address|name|
+        // +---------------+----+
+        // |[Columbus,Ohio]| Yin|
+        // +---------------+----+
+
+        // 有各种options的花式读取，容错，读不读注释啊，分隔符啊这些
+    }
+
+    @Test
+    public void csvFile(){
+        // A CSV dataset is pointed to by path.
+        // The path can be either a single CSV file or a directory of CSV files
+        String path = "examples/src/main/resources/people.csv";
+
+        Dataset<Row> df = spark.read().csv(path);
+        df.show();
+        // +------------------+
+        // |               _c0|
+        // +------------------+
+        // |      name;age;job|
+        // |Jorge;30;Developer|
+        // |  Bob;32;Developer|
+        // +------------------+
+
+        // Read a csv with delimiter, the default delimiter is ","
+        Dataset<Row> df2 = spark.read().option("delimiter", ";").csv(path);
+        df2.show();
+        // +-----+---+---------+
+        // |  _c0|_c1|      _c2|
+        // +-----+---+---------+
+        // | name|age|      job|
+        // |Jorge| 30|Developer|
+        // |  Bob| 32|Developer|
+        // +-----+---+---------+
+
+        // Read a csv with delimiter and a header
+        Dataset<Row> df3 = spark.read().option("delimiter", ";").option("header", "true").csv(path);
+        df3.show();
+        // +-----+---+---------+
+        // | name|age|      job|
+        // +-----+---+---------+
+        // |Jorge| 30|Developer|
+        // |  Bob| 32|Developer|
+        // +-----+---+---------+
+
+        // You can also use options() to use multiple options
+        java.util.Map<String, String> optionsMap = new java.util.HashMap<String, String>();
+        optionsMap.put("delimiter",";");
+        optionsMap.put("header","true");
+        Dataset<Row> df4 = spark.read().options(optionsMap).csv(path);
+
+        // "output" is a folder which contains multiple csv files and a _SUCCESS file.
+        df3.write().csv("output");
+
+        // Read all files in a folder, please make sure only CSV files should present in the folder.
+        String folderPath = "examples/src/main/resources";
+        Dataset<Row> df5 = spark.read().csv(folderPath);
+        df5.show();
+        // Wrong schema because non-CSV files are read
+        // +-----------+
+        // |        _c0|
+        // +-----------+
+        // |238val_238|
+        // |  86val_86|
+        // |311val_311|
+        // |  27val_27|
+        // |165val_165|
+        // +-----------+
+    }
+
+    @Test
+    public void hiveTable(){
+        // spark中不包含hive依赖，如果类路径下有，会自动加载。如果要访问hive数据，使用序列化和反序列化，
+        // 则必须包含hive依赖。hive的配置需要把hive-site.xml,core-site.xml,hdfs-site.xml放在conf目录
+        // 使用hive,sparkSession必须有hive支持。
+        // 没有部署hive也能使用spark的hive功能，在这种情况下，context会自动创建一个元数据库放在当前目录下，
+        // 当前目录默认是spark.sql.warehouse.dir/spark-warehouse, spark2.0.0版本之后，这个目录通过
+        // spark.sql.warehouse.dir指定，保证用户对目录有使用权限
+        // warehouseLocation points to the default location for managed databases and tables
+        String warehouseLocation = new File("spark-warehouse").getAbsolutePath();
+        SparkSession sparkHive = SparkSession
+                .builder()
+                .appName("Java Spark Hive Example")
+                .config("spark.sql.warehouse.dir", warehouseLocation)
+                .enableHiveSupport() // 本来无hive依赖也可以，但是windows有bug,就是不行
+                .getOrCreate();
+
+        sparkHive.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive");
+        sparkHive.sql("LOAD DATA LOCAL INPATH 'examples/src/main/resources/kv1.txt' INTO TABLE src");
+
+        // Queries are expressed in HiveQL
+        sparkHive.sql("SELECT * FROM src").show();
+        // +---+-------+
+        // |key|  value|
+        // +---+-------+
+        // |238|val_238|
+        // | 86| val_86|
+        // |311|val_311|
+        // ...
+
+        // Aggregation queries are also supported.
+        sparkHive.sql("SELECT COUNT(*) FROM src").show();
+        // +--------+
+        // |count(1)|
+        // +--------+
+        // |    500 |
+        // +--------+
+
+        // The results of SQL queries are themselves DataFrames and support all normal functions.
+        Dataset<Row> sqlDF = sparkHive.sql("SELECT key, value FROM src WHERE key < 10 ORDER BY key");
+
+        // The items in DataFrames are of type Row, which lets you to access each column by ordinal.
+        Dataset<String> stringsDS = sqlDF.map(
+                (MapFunction<Row, String>) row -> "Key: " + row.get(0) + ", Value: " + row.get(1),
+                Encoders.STRING());
+        stringsDS.show();
+        // +--------------------+
+        // |               value|
+        // +--------------------+
+        // |Key: 0, Value: val_0|
+        // |Key: 0, Value: val_0|
+        // |Key: 0, Value: val_0|
+        // ...
+
+        // You can also use DataFrames to create temporary views within a SparkSession.
+        List<Record> records = new ArrayList<>();
+        for (int key = 1; key < 100; key++) {
+            Record record = new Record();
+            record.setKey(key);
+            record.setValue("val_" + key);
+            records.add(record);
+        }
+        Dataset<Row> recordsDF = sparkHive.createDataFrame(records, Record.class);
+        recordsDF.createOrReplaceTempView("records");
+
+        // Queries can then join DataFrames data with data stored in Hive.
+        spark.sql("SELECT * FROM records r JOIN src s ON r.key = s.key").show();
+        // +---+------+---+------+
+        // |key| value|key| value|
+        // +---+------+---+------+
+        // |  2| val_2|  2| val_2|
+        // |  2| val_2|  2| val_2|
+        // |  4| val_4|  4| val_4|
+        // ...
+    }
+
+    @Test
+    public void jdbc(){
+        String url = "jdbc:postgresql://localhost:5432/fast";
+        String user = "gpadmin";
+        String password = "NaeEa#24@1#";
+        // Note: JDBC loading and saving can be achieved via either the load/save or jdbc methods
+        // Loading data from a JDBC source
+        Dataset<Row> jdbcDF = spark.read()
+                .format("jdbc")
+                .option("url", url)
+                .option("dbtable", "fast_tool.cfg_scene_guyi_mapping_grid10")
+                .option("user", user)
+                .option("password", password)
+                .load();
+
+        Properties connectionProperties = new Properties();
+        connectionProperties.put("user", user);
+        connectionProperties.put("password", password);
+        Dataset<Row> jdbcDF2 = spark.read()
+                .jdbc(url, "fast_tool.cfg_scene_guyi_mapping_grid10", connectionProperties);
+
+        // Saving data to a JDBC source
+        jdbcDF.write()
+                .format("jdbc")
+                .option("url", url)
+                .option("dbtable", "fast_tool.spark_test_save")
+                .option("user", user)
+                .option("password", password)
+                .save();
+
+        jdbcDF2.write()
+                .jdbc(url, "fast_tool.spark_test_write", connectionProperties);
+
+        // Specifying create table column data types on write
+        // 变更写入的字段类型
+        jdbcDF.write()
+                .option("createTableColumnTypes", "scene_type int, city int")
+                .jdbc(url, "fast_tool.spark_test_createColumn", connectionProperties);
     }
 }

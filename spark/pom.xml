@@ -47,6 +47,17 @@
             <artifactId>spark-mllib_2.12</artifactId>
             <version>3.1.2</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.hive</groupId>-->
+<!--            <artifactId>hive-jdbc</artifactId>-->
+<!--            <version>3.1.2</version>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.lucee/postgresql -->
+        <dependency>
+            <groupId>org.lucee</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>8.3-606.jdbc4</version>
+        </dependency>
     </dependencies>
 </project>
