@@ -543,7 +543,7 @@ public class SQLProgrammingGuide {
     public void jdbc(){
         String url = "jdbc:postgresql://localhost:5432/fast";
         String user = "gpadmin";
-        String password = "NaeEa#24@1#";
+        String password = "******";
         // Note: JDBC loading and saving can be achieved via either the load/save or jdbc methods
         // Loading data from a JDBC source
         Dataset<Row> jdbcDF = spark.read()
